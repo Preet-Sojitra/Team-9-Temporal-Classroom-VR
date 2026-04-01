@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/kimberly/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/assignment01.unity
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/assignment03.unity
     guid: 30c936d529678495c9259a8c8d1dc12e
+  - enabled: 1
+    path: Assets/Main Scene.unity
+    guid: 85282f7cb3ca94a948cfccae1fa67dd0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 795d082a1cecd427bbeef0776923c1c5, type: 2}
