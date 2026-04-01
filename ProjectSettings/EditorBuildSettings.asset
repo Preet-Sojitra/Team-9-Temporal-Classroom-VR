@@ -6,19 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/assignment01.unity
-    guid: aad4c767ff8e3414c80fa59e9ade9742
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/assignment02.unity
-    guid: 5f4844434eedd4a34822d021bbc5edf6
+    path: Assets/assignment01.unity
+    guid: 622b7b64a878d4b91b5c21b6dd406a67
   - enabled: 0
     path: Assets/MiLabCardboardExtension/Scenes/Map Bluetooth Key.unity
     guid: 1eb807ac90408844da5fd17e087fea1e
-  - enabled: 1
+  - enabled: 0
+    path: Assets/assignment02.unity
+    guid: 7d050ba14da3144b5a05f6ccf2fbac7e
+  - enabled: 0
     path: Assets/assignment03.unity
-    guid: 57b8eb4989e304e869f0fe108f17b6b3
+    guid: 30c936d529678495c9259a8c8d1dc12e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 90a2e83199c314cd8a6fc06877c4628f, type: 2}
-    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 84e1cd27590f14333a1337c100810088, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 795d082a1cecd427bbeef0776923c1c5, type: 2}
   m_UseUCBPForAssetBundles: 0

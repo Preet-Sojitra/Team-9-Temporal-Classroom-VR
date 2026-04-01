@@ -4,18 +4,21 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Floor
   - Interactable
-  - Ground
+  - MenuDestroy
+  - MenuStore
+  - MenuExit
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Objects
+  - 
   - Water
   - UI
-  - Surface
-  - Interactable
-  - Ground
+  - 
+  - 
+  - 
   - 
   - 
   - 
