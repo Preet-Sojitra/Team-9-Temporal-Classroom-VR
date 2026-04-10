@@ -17,6 +17,12 @@ public partial class RaycastPointer : MonoBehaviour
     private GameObject currentHoveredObject;
     private ObjectMenu objectMenu;
 
+    void Start()
+    {
+        // Automatically find the ObjectMenu in the scene so we don't have to assign it manually
+        objectMenu = Object.FindFirstObjectByType<ObjectMenu>();
+    }
+
     void Update()
     {
         ShootRaycast();
@@ -48,7 +54,7 @@ public partial class RaycastPointer : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
 
             // CASE 1: Menu is OPEN - Handle button hovering and clicking
-            if (objectMenu.IsMenuOpen())
+            if (objectMenu != null && objectMenu.IsMenuOpen())
             {
                 objectMenu.HoverButton(hitObject);
 
@@ -72,7 +78,7 @@ public partial class RaycastPointer : MonoBehaviour
                 // Press X to open menu near remote
                 if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
                 {
-                    objectMenu.OpenMenu(hitObject);
+                    if (objectMenu != null) objectMenu.OpenMenu(hitObject);
                 }
             }
             else
@@ -85,7 +91,7 @@ public partial class RaycastPointer : MonoBehaviour
             // If we hit nothing, draw the line to its maximum length
             lineRenderer.SetPosition(1, mathOrigin + direction * raycastLength);
             ClearHighlight();
-            if (objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
+            if (objectMenu != null && objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
         }
     }
 
