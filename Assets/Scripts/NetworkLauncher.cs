@@ -34,7 +34,7 @@ public class NetworkLauncher : MonoBehaviour
 
         var result = await _runner.StartGame(new StartGameArgs()
         {
-            GameMode = GameMode.Shared, 
+            GameMode = GameMode.Shared,
             SessionName = "TemporalClassroomVoiceTest"
         });
 
@@ -45,7 +45,7 @@ public class NetworkLauncher : MonoBehaviour
             //voice radio
             if (voiceNetworkPrefab != null)
             {
-                _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
+                // _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
             }
 
             //toggle charecters into different rooms

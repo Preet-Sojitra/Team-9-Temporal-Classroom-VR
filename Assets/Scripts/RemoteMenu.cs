@@ -33,9 +33,15 @@ public class ObjectMenu : MonoBehaviour
     {
         if (!menuCanvas.enabled) return;
 
-        // Make menu face the player
-        transform.LookAt(mainCamera.transform);
-        transform.Rotate(0, 180, 0);
+        // Safety: If mainCamera was lost or not found at Start, find it now
+        if (mainCamera == null) mainCamera = Camera.main;
+
+        if (mainCamera != null)
+        {
+            // Make menu face the player
+            transform.LookAt(mainCamera.transform);
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     public void SelectCurrentButton()
@@ -87,12 +93,32 @@ public class ObjectMenu : MonoBehaviour
 
     public void OpenMenu(GameObject obj)
     {
-        // Move it UP (0.5f) and TOWARD the camera (-1.0f on Z or based on direction)
-        Vector3 shiftTowardPlayer = (mainCamera.transform.position - obj.transform.position).normalized * 0.8f;
-        transform.position = obj.transform.position + new Vector3(0, 0.5f, 0) + shiftTowardPlayer;
+        // Safety check for multiplayer camera spawning
+        if (mainCamera == null) mainCamera = Camera.main;
+
+        if (mainCamera != null)
+        {
+            // Move it UP (0.5f) and TOWARD the camera
+            Vector3 shiftTowardPlayer = (mainCamera.transform.position - obj.transform.position).normalized * 0.8f;
+            transform.position = obj.transform.position + new Vector3(0, 0.5f, 0) + shiftTowardPlayer;
+        }
+        else
+        {
+            // Fallback if camera still isn't found
+            transform.position = obj.transform.position + new Vector3(0, 1.2f, 0);
+            Debug.LogWarning("ObjectMenu: No Main Camera found to calculate offset!");
+        }
 
         menuCanvas.enabled = true;
     }
+    // public void OpenMenu(GameObject obj)
+    // {
+    //     // Move it UP (0.5f) and TOWARD the camera (-1.0f on Z or based on direction)
+    //     Vector3 shiftTowardPlayer = (mainCamera.transform.position - obj.transform.position).normalized * 0.8f;
+    //     transform.position = obj.transform.position + new Vector3(0, 0.5f, 0) + shiftTowardPlayer;
+
+    //     menuCanvas.enabled = true;
+    // }
 
     public void CloseMenu()
     {

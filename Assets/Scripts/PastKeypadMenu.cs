@@ -33,9 +33,16 @@ public class PastKeypadMenu : MonoBehaviour
     void Update()
     {
         if (!menuCanvas.enabled) return;
-        // Face player
-        transform.LookAt(mainCamera.transform);
-        transform.Rotate(0, 180, 0);
+
+        // FIX: If camera wasn't found at Start, find it now
+        if (mainCamera == null) mainCamera = Camera.main;
+
+        if (mainCamera != null)
+        {
+            // Face player
+            transform.LookAt(mainCamera.transform);
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     public void OpenMenu()

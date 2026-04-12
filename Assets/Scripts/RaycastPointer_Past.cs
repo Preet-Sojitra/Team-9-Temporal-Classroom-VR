@@ -334,27 +334,59 @@ public class RaycastPointer_Past : MonoBehaviour
 
         keyToMove.transform.SetParent(null);
 
-        // Use the explicit drop point we created visually
+        // Position on Past Pedestal
         if (pastDropPoint != null)
         {
             keyToMove.transform.position = pastDropPoint.position;
-            keyToMove.transform.rotation = pastDropPoint.rotation;
         }
         else
         {
-            // Fallback: Use a much higher offset if you forgot to assign the point
-            keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 1.5f;
+            keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 0.8f;
         }
 
-        if (keyToMove.GetComponent<Collider>())
-            keyToMove.GetComponent<Collider>().enabled = true;
+        // Ensure physics doesn't make it fall through the floor
+        Rigidbody rb = keyToMove.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
 
-        // Now bring back the wait and teleport
         yield return new WaitForSeconds(waitTimeBeforeTeleport);
 
+        // TELEPORT TO FUTURE
+        Debug.Log("Teleporting Key to Future Pedestal!");
         keyToMove.transform.position = futurePedestalPos.position;
         keyToMove.transform.rotation = futurePedestalPos.rotation;
+
+        // Optional: Re-enable physics in the future if needed
+        // if (rb != null) rb.isKinematic = false; 
     }
+
+    // System.Collections.IEnumerator KeyTeleportSequence()
+    // {
+    //     GameObject keyToMove = grabbedKey;
+    //     grabbedKey = null;
+
+    //     keyToMove.transform.SetParent(null);
+
+    //     // Use the explicit drop point we created visually
+    //     if (pastDropPoint != null)
+    //     {
+    //         keyToMove.transform.position = pastDropPoint.position;
+    //         keyToMove.transform.rotation = pastDropPoint.rotation;
+    //     }
+    //     else
+    //     {
+    //         // Fallback: Use a much higher offset if you forgot to assign the point
+    //         keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 1.5f;
+    //     }
+
+    //     if (keyToMove.GetComponent<Collider>())
+    //         keyToMove.GetComponent<Collider>().enabled = true;
+
+    //     // Now bring back the wait and teleport
+    //     yield return new WaitForSeconds(waitTimeBeforeTeleport);
+
+    //     keyToMove.transform.position = futurePedestalPos.position;
+    //     keyToMove.transform.rotation = futurePedestalPos.rotation;
+    // }
 
 
     void GrabKey(GameObject key)
