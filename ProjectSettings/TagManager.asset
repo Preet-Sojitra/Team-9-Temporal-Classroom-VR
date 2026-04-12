@@ -9,6 +9,8 @@ TagManager:
   - MenuDestroy
   - MenuStore
   - MenuExit
+  - KeypadButton
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -45,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2295813309
     locked: 0
   m_RenderingLayers:
   - Default

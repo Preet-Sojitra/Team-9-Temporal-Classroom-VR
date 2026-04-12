@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.Collections;
 
 public class ObjectMenu : MonoBehaviour
 {
@@ -9,8 +9,11 @@ public class ObjectMenu : MonoBehaviour
     public GameObject infoButton;  // Optional puzzle hint
     public GameObject exitButton;
 
-    [Header("Projector Reference")]
-    public GameObject projectorCodeScreen; // The screen showing the code
+    [Header("Projector Puzzle Setup")]
+    public GameObject projectorMainObject; // The actual projector machine
+    public GameObject beamObject;          // The light beam cylinder/shader
+    public GameObject projectorCodeScreen; // The UI/Plane with the code
+                                           // public AudioSource projectorAudio;  // Placeholder for sound
 
     private Canvas menuCanvas;
     private GameObject currentHoveredButton;
@@ -35,9 +38,59 @@ public class ObjectMenu : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
+    public void SelectCurrentButton()
+    {
+        if (currentHoveredButton == powerButton)
+            StartCoroutine(ProjectorSequence()); // Start the delayed sequence
+        else if (currentHoveredButton == exitButton)
+            CloseMenu();
+    }
+
+    IEnumerator ProjectorSequence()
+    {
+        // 1. Immediate Feedback: Close Menu and Highlight Projector Green
+        CloseMenu();
+
+        if (projectorMainObject != null)
+        {
+            if (projectorMainObject.TryGetComponent<Outline>(out var outline))
+            {
+                outline.OutlineColor = Color.green;
+                outline.enabled = true;
+            }
+        }
+
+        // 2. Audio Placeholder
+        // if(projectorAudio != null) projectorAudio.Play();
+        Debug.Log("Projector starting sound would play now...");
+
+        // 3. The Delay (Wait for 2.5 seconds)
+        yield return new WaitForSeconds(2.5f);
+
+        // 4. Activate Visuals
+        if (beamObject != null) beamObject.SetActive(true);
+        if (projectorCodeScreen != null)
+        {
+            // First, turn on the GameObject
+            projectorCodeScreen.SetActive(true);
+
+            // Second, force the Canvas component to be checked/enabled
+            Canvas codeCanvas = projectorCodeScreen.GetComponent<Canvas>();
+            if (codeCanvas != null)
+            {
+                codeCanvas.enabled = true;
+            }
+        }
+
+        Debug.Log("Projector Sequence Complete: Code Visible.");
+    }
+
     public void OpenMenu(GameObject obj)
     {
-        transform.position = obj.transform.position + new Vector3(0, 0.5f, 0); // Position above remote
+        // Move it UP (0.5f) and TOWARD the camera (-1.0f on Z or based on direction)
+        Vector3 shiftTowardPlayer = (mainCamera.transform.position - obj.transform.position).normalized * 0.8f;
+        transform.position = obj.transform.position + new Vector3(0, 0.5f, 0) + shiftTowardPlayer;
+
         menuCanvas.enabled = true;
     }
 
@@ -74,20 +127,6 @@ public class ObjectMenu : MonoBehaviour
         currentHoveredButton = null;
     }
 
-    public void SelectCurrentButton()
-    {
-        if (currentHoveredButton == powerButton)
-            TurnOnProjector();
-        else if (currentHoveredButton == exitButton)
-            CloseMenu();
-    }
-
-    void TurnOnProjector()
-    {
-        if (projectorCodeScreen != null)
-            projectorCodeScreen.SetActive(true); // Reveal the code for the Past player
-        CloseMenu();
-    }
 
     GameObject GetButtonFromHit(GameObject hitObj)
     {
