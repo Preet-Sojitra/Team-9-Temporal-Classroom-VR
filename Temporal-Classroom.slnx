@@ -9,6 +9,7 @@
   <Project Path="PhotonVoice.csproj" />
   <Project Path="PhotonUnityNetworking.Utilities.csproj" />
   <Project Path="Fusion.Unity.csproj" />
+  <Project Path="ParrelSync.csproj" />
   <Project Path="PhotonChat.csproj" />
   <Project Path="PhotonVoice.Fusion.csproj" />
   <Project Path="MicAmplifierEditor.Editor.csproj" />
