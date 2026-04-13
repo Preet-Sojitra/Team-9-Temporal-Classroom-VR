@@ -26,8 +26,8 @@ public class RaycastPointerFuture : MonoBehaviour
     {
         if (lineRenderer != null)
         {
-            lineRenderer.startWidth = 0.05f; // Thicker base
-            lineRenderer.endWidth = 0.02f;   // Tapered tip
+            lineRenderer.startWidth = 0.015f; // Standard VR laser width
+            lineRenderer.endWidth = 0.005f;   // Tiny dot tip
         }
     }
 
@@ -57,17 +57,18 @@ public class RaycastPointerFuture : MonoBehaviour
             // Logic for dropping the key in the future room can go here later
         }
 
-        // 2. Visual Line Setup (Local Space)
+        // 2. Visual Line Setup (World Space)
         float sideDirection = offsetToRight ? 1f : -1f;
         Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
+        Vector3 worldOrigin = lineRenderer.transform.TransformPoint(localOrigin);
 
-        lineRenderer.useWorldSpace = false;
-        lineRenderer.SetPosition(0, localOrigin);
+        lineRenderer.useWorldSpace = true;
+        lineRenderer.SetPosition(0, worldOrigin);
 
         // 3. Physics Check
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
-            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(hit.point));
+            lineRenderer.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject;
 
             // Priority 1: The Menu
@@ -106,7 +107,7 @@ public class RaycastPointerFuture : MonoBehaviour
         else
         {
             Vector3 worldEndPoint = mathOrigin + direction * raycastLength;
-            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(worldEndPoint));
+            lineRenderer.SetPosition(1, worldEndPoint);
             ClearHighlight();
             if (objectMenu != null && objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
         }

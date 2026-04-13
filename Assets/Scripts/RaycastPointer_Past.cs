@@ -49,8 +49,8 @@ public class RaycastPointer_Past : MonoBehaviour
 
         if (lineRenderer != null)
         {
-            lineRenderer.startWidth = 0.05f; // Thicker base
-            lineRenderer.endWidth = 0.02f;   // Tapered tip
+            lineRenderer.startWidth = 0.015f; // Standard VR laser width
+            lineRenderer.endWidth = 0.005f;   // Tiny dot tip
         }
     }
 
@@ -236,17 +236,18 @@ public class RaycastPointer_Past : MonoBehaviour
             grabbedKey.transform.position = rayTip != null ? rayTip.position : mathOrigin + (direction * 1.5f);
         }
 
-        // 3. Visual Line Renderer Origin (Local Space)
+        // 3. Visual Line Renderer Origin (World Space)
         float sideDirection = offsetToRight ? 1f : -1f;
         Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
+        Vector3 worldOrigin = lineRenderer.transform.TransformPoint(localOrigin);
         
-        lineRenderer.useWorldSpace = false;
-        lineRenderer.SetPosition(0, localOrigin);
+        lineRenderer.useWorldSpace = true;
+        lineRenderer.SetPosition(0, worldOrigin);
 
         // --- 4. PHYSICS CHECK ---
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
-            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(hit.point));
+            lineRenderer.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject; // hitObject is created HERE
 
             // DEBUG: Draw a line in the Scene view so you can see where the ray is REALLY hitting
@@ -301,7 +302,7 @@ public class RaycastPointer_Past : MonoBehaviour
         {
             // Ray hits nothing
             Vector3 worldEndPoint = mathOrigin + direction * raycastLength;
-            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(worldEndPoint));
+            lineRenderer.SetPosition(1, worldEndPoint);
             ClearHighlight();
             SetPedestalHighlight(false); // Reset pedestal if we look at the sky
 
