@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 public class NetworkLauncher : MonoBehaviour
 {
     private NetworkRunner _runner;
+    private int _maxPlayersSeen = 0;
 
     [Header("Voice Chat")]
     [Tooltip("An invisible object with a Speaker component to play remote voices.")]
@@ -20,6 +21,30 @@ public class NetworkLauncher : MonoBehaviour
     {
         //start connection when scene loads
         await ConnectToSession();
+    }
+
+    void Update()
+    {
+        // Check if anyone disconnected mid-game
+        if (_runner != null && _runner.IsRunning && _runner.SessionInfo != null)
+        {
+            // Record maximum lobby size
+            if (_runner.SessionInfo.PlayerCount > _maxPlayersSeen)
+            {
+                _maxPlayersSeen = _runner.SessionInfo.PlayerCount;
+            }
+
+            // If we successfully had 2 players, and now we only have 1 (meaning the other player quit/crashed)
+            if (_maxPlayersSeen == 2 && _runner.SessionInfo.PlayerCount < 2)
+            {
+                Debug.LogWarning("Player 2 disconnected! Force rebooting the game...");
+                _maxPlayersSeen = 0; 
+                
+                // Nuke the session and reload the entire scene to force a totally clean restart for everyone!
+                _runner.Shutdown();
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
     private async Task ConnectToSession()

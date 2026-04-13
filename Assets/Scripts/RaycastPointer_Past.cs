@@ -5,7 +5,7 @@ public class RaycastPointer_Past : MonoBehaviour
     public MonoBehaviour CharacterMovement; // Reference to the player's movement script
 
     [Header("Raycast Settings")]
-    public float raycastLength = 10f;
+    public float raycastLength = 5f;
 
     [Header("Line Renderer")]
     public LineRenderer lineRenderer;
