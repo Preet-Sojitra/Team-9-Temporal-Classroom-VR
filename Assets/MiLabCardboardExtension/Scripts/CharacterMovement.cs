@@ -59,7 +59,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 5f;
     public float gravity = -9.81f;
     public Transform cameraObj; // assign Main Camera here
     
