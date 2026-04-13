@@ -51,8 +51,8 @@ public class NetworkLauncher : MonoBehaviour
             //toggle charecters into different rooms
             if (pastCharacter != null && futureCharacter != null)
             {
-                //first player that joins is player1
-                if (_runner.SessionInfo.PlayerCount <= 1)
+                // The server creator is always Player 1
+                if (_runner.IsSharedModeMasterClient)
                 {
                     //enable Past, disable Future
                     pastCharacter.SetActive(true);
