@@ -75,6 +75,12 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+#if UNITY_ANDROID || UNITY_IOS
+        joyStickMode = true;  // Bluetooth controllers naturally swap axes
+#else
+        joyStickMode = false; // Mac/PC WASD keyboards use normal axes
+#endif
     }
 
     void Update()
