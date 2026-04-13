@@ -22,7 +22,16 @@ public class RaycastPointerFuture : MonoBehaviour
     private GameObject grabbedKey = null;
     public Transform rayTip; // Same setup as Past room for holding the key
 
-    void Update()
+    void Start()
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.startWidth = 0.05f; // Thicker base
+            lineRenderer.endWidth = 0.02f;   // Tapered tip
+        }
+    }
+
+    void LateUpdate()
     {
         if (CharacterMovement != null && objectMenu != null)
         {
@@ -48,26 +57,24 @@ public class RaycastPointerFuture : MonoBehaviour
             // Logic for dropping the key in the future room can go here later
         }
 
-        // 2. Visual Line Setup
+        // 2. Visual Line Setup (Local Space)
         float sideDirection = offsetToRight ? 1f : -1f;
-        Vector3 visualOrigin = mathOrigin
-                            + (transform.right * visualOffset.x * sideDirection)
-                            + (transform.up * visualOffset.y)
-                            + (transform.forward * visualOffset.z);
+        Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
 
-        lineRenderer.SetPosition(0, visualOrigin);
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.SetPosition(0, localOrigin);
 
         // 3. Physics Check
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(hit.point));
             GameObject hitObject = hit.collider.gameObject;
 
             // Priority 1: The Menu
             if (objectMenu != null && objectMenu.IsMenuOpen())
             {
                 objectMenu.HoverButton(hitObject);
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     objectMenu.SelectCurrentButton();
                 }
@@ -79,7 +86,7 @@ public class RaycastPointerFuture : MonoBehaviour
             {
                 UpdateHighlight(hitObject);
 
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     if (hitObject.CompareTag("Key"))
                     {
@@ -98,7 +105,8 @@ public class RaycastPointerFuture : MonoBehaviour
         }
         else
         {
-            lineRenderer.SetPosition(1, mathOrigin + direction * raycastLength);
+            Vector3 worldEndPoint = mathOrigin + direction * raycastLength;
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(worldEndPoint));
             ClearHighlight();
             if (objectMenu != null && objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
         }

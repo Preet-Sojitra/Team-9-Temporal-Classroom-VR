@@ -21,9 +21,15 @@ public partial class RaycastPointer : MonoBehaviour
     {
         // Automatically find the ObjectMenu in the scene so we don't have to assign it manually
         objectMenu = Object.FindFirstObjectByType<ObjectMenu>();
+
+        if (lineRenderer != null)
+        {
+            lineRenderer.startWidth = 0.05f; // Thicker base
+            lineRenderer.endWidth = 0.02f;   // Tapered tip
+        }
     }
 
-    void Update()
+    void LateUpdate()
     {
         ShootRaycast();
     }
@@ -36,20 +42,17 @@ public partial class RaycastPointer : MonoBehaviour
         Ray ray = new Ray(mathOrigin, direction);
         RaycastHit hit;
 
-        // 2. Visual Origin (Calculated with the offset for the LineRenderer)
+        // 2. Visual Origin (Local Space)
         float sideDirection = offsetToRight ? 1f : -1f;
-        Vector3 visualOrigin = mathOrigin
-                            + (transform.right * visualOffset.x * sideDirection)
-                            + (transform.up * visualOffset.y)
-                            + (transform.forward * visualOffset.z);
+        Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
 
-        lineRenderer.useWorldSpace = true;
-        lineRenderer.SetPosition(0, visualOrigin);
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.SetPosition(0, localOrigin);
 
         // 3. Physics Check
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(hit.point));
 
             GameObject hitObject = hit.collider.gameObject;
 
@@ -58,7 +61,7 @@ public partial class RaycastPointer : MonoBehaviour
             {
                 objectMenu.HoverButton(hitObject);
 
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     objectMenu.SelectCurrentButton();
                 }
@@ -76,7 +79,7 @@ public partial class RaycastPointer : MonoBehaviour
                 }
 
                 // Press X to open menu near remote
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     if (objectMenu != null) objectMenu.OpenMenu(hitObject);
                 }
@@ -89,7 +92,8 @@ public partial class RaycastPointer : MonoBehaviour
         else
         {
             // If we hit nothing, draw the line to its maximum length
-            lineRenderer.SetPosition(1, mathOrigin + direction * raycastLength);
+            Vector3 worldEndPoint = mathOrigin + direction * raycastLength;
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(worldEndPoint));
             ClearHighlight();
             if (objectMenu != null && objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
         }

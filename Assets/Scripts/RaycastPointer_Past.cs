@@ -46,11 +46,17 @@ public class RaycastPointer_Past : MonoBehaviour
                 outline.OutlineWidth = 2f;
             }
         }
+
+        if (lineRenderer != null)
+        {
+            lineRenderer.startWidth = 0.05f; // Thicker base
+            lineRenderer.endWidth = 0.02f;   // Tapered tip
+        }
     }
 
 
 
-    void Update()
+    void LateUpdate()
     {
         // 1. Safety check and movement toggle
         if (pastMenu != null && CharacterMovement != null)
@@ -230,15 +236,17 @@ public class RaycastPointer_Past : MonoBehaviour
             grabbedKey.transform.position = rayTip != null ? rayTip.position : mathOrigin + (direction * 1.5f);
         }
 
-        // 3. Visual Line Renderer Origin
+        // 3. Visual Line Renderer Origin (Local Space)
         float sideDirection = offsetToRight ? 1f : -1f;
-        Vector3 visualOrigin = mathOrigin + (transform.right * visualOffset.x * sideDirection) + (transform.up * visualOffset.y) + (transform.forward * visualOffset.z);
-        lineRenderer.SetPosition(0, visualOrigin);
+        Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
+        
+        lineRenderer.useWorldSpace = false;
+        lineRenderer.SetPosition(0, localOrigin);
 
         // --- 4. PHYSICS CHECK ---
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(hit.point));
             GameObject hitObject = hit.collider.gameObject; // hitObject is created HERE
 
             // DEBUG: Draw a line in the Scene view so you can see where the ray is REALLY hitting
@@ -253,7 +261,7 @@ public class RaycastPointer_Past : MonoBehaviour
                 {
                     SetPedestalHighlight(true); // Glow Yellow
 
-                    if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                    if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                     {
                         Debug.Log("X Pressed while looking at Pedestal!");
                         TeleportKeyToFuture();
@@ -270,14 +278,14 @@ public class RaycastPointer_Past : MonoBehaviour
             if (pastMenu.IsMenuOpen())
             {
                 pastMenu.HoverButton(hitObject);
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X)) pastMenu.SelectButton();
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X)) pastMenu.SelectButton();
                 return;
             }
 
             if (hitObject.CompareTag("Key") || hitObject.CompareTag("Interactable"))
             {
                 UpdateHighlight(hitObject);
-                if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     if (hitObject.CompareTag("Key")) GrabKey(hitObject);
                     else if (hitObject.name == "chest_close") pastMenu.OpenMenu();
@@ -292,7 +300,8 @@ public class RaycastPointer_Past : MonoBehaviour
         else
         {
             // Ray hits nothing
-            lineRenderer.SetPosition(1, mathOrigin + direction * raycastLength);
+            Vector3 worldEndPoint = mathOrigin + direction * raycastLength;
+            lineRenderer.SetPosition(1, lineRenderer.transform.InverseTransformPoint(worldEndPoint));
             ClearHighlight();
             SetPedestalHighlight(false); // Reset pedestal if we look at the sky
 

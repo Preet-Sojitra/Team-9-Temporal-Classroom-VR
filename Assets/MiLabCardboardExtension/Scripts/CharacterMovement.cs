@@ -1,4 +1,4 @@
-﻿// using System.Collections;
+// using System.Collections;
 // using System.Collections.Generic;
 // using UnityEngine;
 
@@ -62,6 +62,12 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 2f;
     public float gravity = -9.81f;
     public Transform cameraObj; // assign Main Camera here
+    
+    [Tooltip("Check this if using a Bluetooth Controller that swaps Y/X axes for movement.")]
+    public bool joyStickMode = true;
+    
+    [Tooltip("Enable for standard VR movement where pushing Forward goes where you are looking. Disable for Rig-oriented movement.")]
+    public bool headOrientedMovement = true;
 
     private CharacterController controller;
     private float verticalVelocity;
@@ -76,9 +82,28 @@ public class CharacterMovement : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
-        // Movement relative to PLAYER, not camera
-        Vector3 forward = transform.forward;
-        Vector3 right = transform.right;
+        // Swap axes for standard mobile VR bluetooth controllers
+        if (joyStickMode)
+        {
+            inputX = Input.GetAxis("Vertical");
+            inputZ = Input.GetAxis("Horizontal") * -1f;
+        }
+
+        Vector3 forward;
+        Vector3 right;
+
+        if (headOrientedMovement && cameraObj != null)
+        {
+            // Movement relative to CAMERA (where you are looking)
+            forward = cameraObj.forward;
+            right = cameraObj.right;
+        }
+        else
+        {
+            // Movement relative to PLAYER RIG
+            forward = transform.forward;
+            right = transform.right;
+        }
 
         // Prevent head tilt affecting movement
         forward.y = 0;

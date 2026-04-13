@@ -45,7 +45,7 @@ public class NetworkLauncher : MonoBehaviour
             //voice radio
             if (voiceNetworkPrefab != null)
             {
-                // _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
+                _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
             }
 
             //toggle charecters into different rooms
