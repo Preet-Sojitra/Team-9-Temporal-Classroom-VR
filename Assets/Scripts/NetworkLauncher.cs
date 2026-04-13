@@ -71,6 +71,15 @@ public class NetworkLauncher : MonoBehaviour
         else
         {
             Debug.LogError($"Failed to start Fusion: {result.ShutdownReason}");
+
+            // FALLBACK: If Android blocks the connection (e.g. during a Microphone Permission popup, or no WiFi),
+            // we MUST activate a camera anyway, otherwise Unity will render a pure Black Screen!
+            if (pastCharacter != null)
+            {
+                pastCharacter.SetActive(true);
+                if (futureCharacter != null) futureCharacter.SetActive(false);
+                Debug.LogWarning("Network Timeout/Error: Spawned Past Room locally as a fallback.");
+            }
         }
     }
 }
