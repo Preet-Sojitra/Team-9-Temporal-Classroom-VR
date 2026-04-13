@@ -5,7 +5,7 @@ public class RaycastPointerFuture : MonoBehaviour
     public CharacterMovement CharacterMovement;
 
     [Header("Raycast Settings")]
-    public float raycastLength = 5f;
+    public float raycastLength = 2f;
 
     [Header("Line Renderer")]
     public LineRenderer lineRenderer;

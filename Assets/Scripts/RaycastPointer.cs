@@ -3,7 +3,7 @@ using UnityEngine;
 public partial class RaycastPointer : MonoBehaviour
 {
     [Header("Raycast Settings")]
-    public float raycastLength = 5f;
+    public float raycastLength = 2f;
     public LayerMask interactableLayer; // Added for better performance
 
     [Header("Line Renderer")]
