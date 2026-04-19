@@ -136,3 +136,8 @@ public class CharacterMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime);
     }
 }
+
+// void OnControllerColliderHit(ControllerColliderHit hit)
+// {
+//     Debug.Log("Hit: " + hit.gameObject.name);
+// }

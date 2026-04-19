@@ -38,8 +38,8 @@ public class NetworkLauncher : MonoBehaviour
             if (_maxPlayersSeen == 2 && _runner.SessionInfo.PlayerCount < 2)
             {
                 Debug.LogWarning("Player 2 disconnected! Force rebooting the game...");
-                _maxPlayersSeen = 0; 
-                
+                _maxPlayersSeen = 0;
+
                 // Nuke the session and reload the entire scene to force a totally clean restart for everyone!
                 _runner.Shutdown();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
@@ -73,25 +73,65 @@ public class NetworkLauncher : MonoBehaviour
                 _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
             }
 
-            //toggle charecters into different rooms
+            //toggle characters into different rooms based on Lobby Choice
             if (pastCharacter != null && futureCharacter != null)
             {
-                // The server creator is always Player 1
-                if (_runner.IsSharedModeMasterClient)
+                // Logic: Look at the static variable from the Lobby
+                if (LobbyData.SelectedRole == "Past")
                 {
-                    //enable Past, disable Future
                     pastCharacter.SetActive(true);
                     futureCharacter.SetActive(false);
-                    Debug.Log("Spawned as Player 1 in the Past Room!");
+                    Debug.Log("Spawned in the PAST Room based on Lobby choice.");
+                }
+                else if (LobbyData.SelectedRole == "Future")
+                {
+                    pastCharacter.SetActive(false);
+                    futureCharacter.SetActive(true);
+                    Debug.Log("Spawned in the FUTURE Room based on Lobby choice.");
                 }
                 else
                 {
-                    //enable Future, disable Past
-                    pastCharacter.SetActive(false);
-                    futureCharacter.SetActive(true);
-                    Debug.Log("Spawned as Player 2 in the Future Room!");
+                    // FALLBACK: If you play the scene directly without the lobby
+                    Debug.LogWarning("No choice detected! Defaulting to MasterClient logic.");
+                    bool isMaster = _runner.IsSharedModeMasterClient;
+                    pastCharacter.SetActive(isMaster);
+                    futureCharacter.SetActive(!isMaster);
                 }
             }
+
+            await Task.Delay(1000);
+
+            // Find and disable the blindfold on the active character
+            if (pastCharacter.activeSelf || futureCharacter.activeSelf)
+            {
+                var canvas = pastCharacter.GetComponentInChildren<Canvas>(true);
+                if (canvas != null) canvas.gameObject.SetActive(false);
+            }
+            // else if (futureCharacter.activeSelf)
+            // {
+            //     var canvas = futureCharacter.GetComponentInChildren<Canvas>(true);
+            //     if(canvas != null) canvas.gameObject.SetActive(false);
+            // }
+
+            //toggle charecters into different rooms
+            // if (pastCharacter != null && futureCharacter != null)
+            // {
+            //     // The server creator is always Player 1
+            //     if (_runner.IsSharedModeMasterClient)
+            //     {
+            //         //enable Past, disable Future
+            //         pastCharacter.SetActive(true);
+            //         futureCharacter.SetActive(false);
+            //         Debug.Log("Spawned as Player 1 in the Past Room!");
+            //     }
+            //     else
+            //     {
+            //         //enable Future, disable Past
+            //         pastCharacter.SetActive(false);
+            //         futureCharacter.SetActive(true);
+            //         Debug.Log("Spawned as Player 2 in the Future Room!");
+            //     }
+            // }
         }
         else
         {
