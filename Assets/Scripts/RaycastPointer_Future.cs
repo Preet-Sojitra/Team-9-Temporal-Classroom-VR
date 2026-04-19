@@ -22,6 +22,9 @@ public class RaycastPointerFuture : MonoBehaviour
     private GameObject grabbedKey = null;
     public Transform rayTip; // Same setup as Past room for holding the key
 
+    [Header("Future Pedestal")]
+    public GameObject futurePedestal;  // drag in Inspector
+
     void Start()
     {
         if (lineRenderer != null)
@@ -29,6 +32,7 @@ public class RaycastPointerFuture : MonoBehaviour
             lineRenderer.startWidth = 0.015f; // Standard VR laser width
             lineRenderer.endWidth = 0.005f;   // Tiny dot tip
         }
+         SetPedestalHighlight(false);
     }
 
     void LateUpdate()
@@ -71,6 +75,14 @@ public class RaycastPointerFuture : MonoBehaviour
             lineRenderer.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject;
 
+            bool isLookingAtPedestal = (hitObject == futurePedestal || hitObject.transform.IsChildOf(futurePedestal.transform));
+
+            if (isLookingAtPedestal)
+                {
+                    SetPedestalHighlight(true); // Glow Yellow
+                }
+
+
             // Priority 1: The Menu
             if (objectMenu != null && objectMenu.IsMenuOpen())
             {
@@ -112,6 +124,21 @@ public class RaycastPointerFuture : MonoBehaviour
             if (objectMenu != null && objectMenu.IsMenuOpen()) objectMenu.ClearButtonHighlight();
         }
     }
+
+    void SetPedestalHighlight(bool isHovering)
+{
+    if (futurePedestal == null) return;
+    Outline outline = futurePedestal.GetComponentInChildren<Outline>();
+    if (outline != null)
+    {
+        outline.enabled = isHovering;
+        if (isHovering)
+        {
+            outline.OutlineColor = Color.yellow;
+            outline.OutlineWidth = 8f;
+        }
+    }
+}
 
     void GrabKey(GameObject key)
     {

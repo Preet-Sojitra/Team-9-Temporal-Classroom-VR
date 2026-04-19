@@ -1,4 +1,6 @@
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class RaycastPointer_Past : MonoBehaviour
 {
@@ -37,15 +39,15 @@ public class RaycastPointer_Past : MonoBehaviour
 
     void Start()
     {
-        if (pastPedestal != null)
-        {
-            if (pastPedestal.TryGetComponent<Outline>(out var outline))
-            {
-                outline.enabled = true;
-                pedestalDefaultColor = outline.OutlineColor; // Remember the starting color
-                outline.OutlineWidth = 2f;
-            }
-        }
+        // if (pastPedestal != null)
+        // {
+        //     if (pastPedestal.TryGetComponent<Outline>(out var outline))
+        //     {
+        //         outline.enabled = true;
+        //         pedestalDefaultColor = outline.OutlineColor; // Remember the starting color
+        //         outline.OutlineWidth = 2f;
+        //     }
+        // }
 
         if (lineRenderer != null)
         {
@@ -251,7 +253,7 @@ public class RaycastPointer_Past : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject; // hitObject is created HERE
 
             // DEBUG: Draw a line in the Scene view so you can see where the ray is REALLY hitting
-            Debug.DrawLine(mathOrigin, hit.point, Color.red);
+            // Debug.DrawLine(mathOrigin, hit.point, Color.red);
             bool isLookingAtPedestal = (hitObject == pastPedestal || hitObject.transform.IsChildOf(pastPedestal.transform));
 
             // --- NEW PEDESTAL LOGIC (Inside the hit check) ---
@@ -322,14 +324,30 @@ public class RaycastPointer_Past : MonoBehaviour
     }
 
     void SetPedestalHighlight(bool isHovering)
+{
+    if (pastPedestal == null) return;
+
+    // Search in children too, not just root
+    Outline outline = pastPedestal.GetComponentInChildren<Outline>();
+    
+    if (outline != null)
     {
-        if (pastPedestal != null && pastPedestal.TryGetComponent<Outline>(out var outline))
+        if (isHovering)
         {
-            outline.OutlineColor = isHovering ? Color.yellow : pedestalDefaultColor;
-            // Optional: make the outline thicker when hovering
-            outline.OutlineWidth = isHovering ? 8f : 4f;
+            outline.enabled = true;
+            outline.OutlineColor = Color.yellow;
+            outline.OutlineWidth = 8f;
+        }
+        else
+        {
+            outline.enabled = false;
         }
     }
+    else
+    {
+        Debug.LogWarning("No Outline component found on pedestal or its children!");
+    }
+}
 
     void TeleportKeyToFuture()
     {
@@ -370,33 +388,73 @@ public class RaycastPointer_Past : MonoBehaviour
     // }
 
     System.Collections.IEnumerator KeyTeleportSequence()
+{
+    GameObject keyToMove = grabbedKey;
+    grabbedKey = null;
+
+    keyToMove.transform.SetParent(null);
+
+    if (pastDropPoint != null)
     {
-        GameObject keyToMove = grabbedKey;
-        grabbedKey = null;
+        keyToMove.transform.position = pastDropPoint.position;
+        keyToMove.transform.rotation = pastDropPoint.rotation;
+    }
 
-        keyToMove.transform.SetParent(null);
+    if (keyToMove.GetComponent<Collider>())
+        keyToMove.GetComponent<Collider>().enabled = true;
 
-        // Use the explicit drop point we created visually
-        if (pastDropPoint != null)
-        {
-            keyToMove.transform.position = pastDropPoint.position;
-            keyToMove.transform.rotation = pastDropPoint.rotation;
-        }
-        else
-        {
-            // Fallback: Use a much higher offset if you forgot to assign the point
-            keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 1.5f;
-        }
+    yield return new WaitForSeconds(waitTimeBeforeTeleport);
 
-        if (keyToMove.GetComponent<Collider>())
-            keyToMove.GetComponent<Collider>().enabled = true;
+    // ---- NETWORK SYNC FIX ----
+    PhotonView pv = keyToMove.GetComponent<PhotonView>();
+    if (pv != null)
+    {
+        // Request ownership so THIS client can move it
+        pv.RequestOwnership();
+        yield return new WaitForSeconds(0.1f); // small wait for ownership transfer
 
-        // Now bring back the wait and teleport
-        yield return new WaitForSeconds(waitTimeBeforeTeleport);
-
+        // Use RPC to move on ALL clients
+        pv.RPC("TeleportToFuture", RpcTarget.AllBuffered,
+            futurePedestalPos.position,
+            futurePedestalPos.rotation);
+    }
+    else
+    {
+        // Fallback if no PhotonView (local only)
+        Debug.LogWarning("Key has no PhotonView! Teleport won't sync.");
         keyToMove.transform.position = futurePedestalPos.position;
         keyToMove.transform.rotation = futurePedestalPos.rotation;
     }
+}
+
+    // System.Collections.IEnumerator KeyTeleportSequence()
+    // {
+    //     GameObject keyToMove = grabbedKey;
+    //     grabbedKey = null;
+
+    //     keyToMove.transform.SetParent(null);
+
+    //     // Use the explicit drop point we created visually
+    //     if (pastDropPoint != null)
+    //     {
+    //         keyToMove.transform.position = pastDropPoint.position;
+    //         keyToMove.transform.rotation = pastDropPoint.rotation;
+    //     }
+    //     else
+    //     {
+    //         // Fallback: Use a much higher offset if you forgot to assign the point
+    //         keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 1.5f;
+    //     }
+
+    //     if (keyToMove.GetComponent<Collider>())
+    //         keyToMove.GetComponent<Collider>().enabled = true;
+
+    //     // Now bring back the wait and teleport
+    //     yield return new WaitForSeconds(waitTimeBeforeTeleport);
+
+    //     keyToMove.transform.position = futurePedestalPos.position;
+    //     keyToMove.transform.rotation = futurePedestalPos.rotation;
+    // }
 
 
     void GrabKey(GameObject key)
