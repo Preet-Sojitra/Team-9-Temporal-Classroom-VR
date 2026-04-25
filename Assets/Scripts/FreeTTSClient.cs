@@ -8,7 +8,7 @@ public class FreeTTSClient : MonoBehaviour
     [Header("Voice Settings")]
     [Tooltip("Lower = deeper/creepier (0.7-0.9 for eerie), 1.0 = normal")]
     [Range(0.5f, 1.5f)]
-    public float voicePitch = 0.82f;
+    public float voicePitch = 0.93f;
 
     [Header("Eerie Audio Effects")]
     [Tooltip("Enable reverb for a haunted/echoing effect")]

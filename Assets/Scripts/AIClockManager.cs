@@ -44,6 +44,21 @@ public class AIClockManager : NetworkBehaviour
     private bool isInitialized = false;
     private float localTimer; // Fallback timer when no network
 
+    /// <summary>
+    /// Safe accessor that never throws even before Spawned().
+    /// </summary>
+    private float SafeCurrentTime
+    {
+        get
+        {
+            if (isInitialized && Object != null && Object.IsValid)
+            {
+                return CurrentTime;
+            }
+            return localTimer;
+        }
+    }
+
     private void Awake()
     {
         // Always grab references early so nothing is null
@@ -98,12 +113,17 @@ public class AIClockManager : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
+        if (!isInitialized || Object == null || !Object.IsValid) return;
+
         // ---------- TIMER SYNC ----------
         if (Object.HasStateAuthority && CurrentTime > 0)
         {
             CurrentTime -= Runner.DeltaTime;
             if (CurrentTime < 0) CurrentTime = 0;
         }
+
+        // Keep localTimer in sync for safe access
+        localTimer = CurrentTime;
 
         UpdateTimerUI(CurrentTime);
         HandleCountdown(CurrentTime);
@@ -192,8 +212,14 @@ public class AIClockManager : NetworkBehaviour
 
         Debug.Log("[AIClock] Player said: " + transcribedText);
 
+        // Prepend time context so the AI knows the exact remaining time
+        int m = Mathf.FloorToInt(SafeCurrentTime / 60f);
+        int s = Mathf.FloorToInt(SafeCurrentTime % 60f);
+        string timeInfo = $"[CONTEXT: There are {m} minutes and {s} seconds remaining on the clock.] ";
+        string fullPrompt = timeInfo + "The player asked: " + transcribedText;
+
         // Send to all clients via Photon (or local fallback)
-        AskClockSafe(transcribedText);
+        AskClockSafe(fullPrompt);
     }
 
     // ============================================================
@@ -205,7 +231,7 @@ public class AIClockManager : NetworkBehaviour
         // Wait a bit after the game starts before the first taunt
         yield return new WaitForSeconds(30f);
 
-        while (CurrentTime > 0)
+        while (SafeCurrentTime > 0)
         {
             float waitTime = Random.Range(minTormentInterval, maxTormentInterval);
             yield return new WaitForSeconds(waitTime);
@@ -224,17 +250,19 @@ public class AIClockManager : NetworkBehaviour
 
     private string GetTimeContext()
     {
-        float timeToUse = isInitialized ? CurrentTime : localTimer;
-        float minutesLeft = timeToUse / 60f;
+        float timeLeft = SafeCurrentTime;
+        int m = Mathf.FloorToInt(timeLeft / 60f);
+        int s = Mathf.FloorToInt(timeLeft % 60f);
+        string exactTime = $"There are exactly {m} minutes and {s} seconds left.";
 
-        if (minutesLeft > 3.5f)
-            return "They just started and are probably clueless. Mock their confidence.";
-        else if (minutesLeft > 2f)
-            return "They are past the halfway mark and seem lost. Pressure them about wasting time.";
-        else if (minutesLeft > 1f)
-            return "Time is running low! Be more aggressive and urgent. Make them panic.";
+        if (timeLeft > 210f)
+            return $"{exactTime} They just started and are probably clueless. Mock their confidence.";
+        else if (timeLeft > 120f)
+            return $"{exactTime} They are past the halfway mark and seem lost. Pressure them about wasting time.";
+        else if (timeLeft > 60f)
+            return $"{exactTime} Time is running low! Be more aggressive and urgent. Make them panic.";
         else
-            return "They have less than 1 minute left! Be dramatic. Tell them they are absolutely doomed. Laugh at them.";
+            return $"{exactTime} They have less than 1 minute left! Be dramatic. Tell them they are absolutely doomed.";
     }
 
     // ============================================================
