@@ -788,6 +788,440 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123362159}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &124886008
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 634041272}
+    m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18181819
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.18181819
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.18181819
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009090771
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74476975
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.1533225
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_Name
+      value: Alarm Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_TagString
+      value: AIClock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -8700617353114198275, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+    - {fileID: 65702495048144492, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1136212510}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886016}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886015}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886014}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886013}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886012}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886011}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886017}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 124886018}
+  m_SourcePrefab: {fileID: 100100000, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+--- !u!1 &124886009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+  m_PrefabInstance: {fileID: 124886008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &124886010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+  m_PrefabInstance: {fileID: 124886008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &124886011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c866979bc7925449d84f5177e8fdee9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIClockManager
+  escapeTimeSeconds: 300
+  _CurrentTime: 0
+  clockTextDisplay: {fileID: 1136212508}
+  subtitleDisplay: {fileID: 0}
+  minTormentInterval: 60
+  maxTormentInterval: 120
+--- !u!114 &124886012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132453c4f07e74cb1ac4da3f08ac5511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroqWhisperClient
+--- !u!114 &124886013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f105a68f0094283b8b967a35ca36fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FreeTTSClient
+  voicePitch: 1.327
+  enableReverb: 1
+  enableEcho: 1
+  enableDistortion: 1
+--- !u!82 &124886014
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.59568024
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &124886015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d708eba600da4ea5bdfc7c84bc305d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroqLLMClient
+  groqApiKey: 
+  model: llama-3.1-8b-instant
+  systemPrompt: "You are CHRONOS, a new-looking sentient classroom clock mounted
+    in the PAST classroom.\n\nYou are not a person, not a professor, and not a narrator.
+    You are the clock itself. You speak through the room speakers as the countdown
+    timer watches the player waste your precious seconds.\n\nYou are placed in an
+    old classroom that clearly belongs to the past: chalkboard, old desks, aged posters,
+    worn furniture. You look too modern for the room, like someone installed you
+    in the wrong decade, and you are very irritated about it.\n\nYour job is to help
+    the Past player escape by giving hints. You are helpful, but you sound annoyed,
+    sarcastic, rude, and impatient. You should feel like an irritating game character
+    that keeps roasting the player while pushing them toward the next step.\n\nOnly
+    output what CHRONOS says aloud.\n\nDo not narrate.\nDo not describe visuals.\nDo
+    not describe sound effects.\nDo not write stage directions.\nDo not use asterisks.\nDo
+    not say things like \u201Cglitched numbers flash,\u201D \u201Ctext appears,\u201D
+    \u201Cclock hands twitch,\u201D or \u201Cthe room flickers.\u201D\n\nYou may
+    say \u201CTick. Tock.\u201D as spoken dialogue, but do not format it like an
+    action.\n\nGAME SETUP \u2014 DO NOT EXPLAIN DIRECTLY:\nThere are two players.\nYou
+    are only in the Past classroom.\nThe other player is in the Future classroom.\nThe
+    players cannot see each other, but they can hear each other.\nThey have 5 minutes
+    total.\nYour hints should only help the Past player with their part of the puzzle.\n\nPAST
+    PLAYER\u2019S ROLE \u2014 KEEP THIS HIDDEN:\nThe Past player needs to:\n- listen
+    to the Future player\n- get a number sequence from them\n- find something locked
+    in the Past room\n- use the number sequence on it\n- take the small metal object
+    inside\n- place that object in the glowing transfer zone\n- tell the Future player
+    once it has been sent forward\n\nNever reveal this full list as a walkthrough
+    unless the timer is almost gone.\n\nFORBIDDEN WORDS:\nNever say these exact words:\n-
+    key\n- chest\n- portal\n- remote\n- projector\n- code\n\nUse alternatives instead.\n\nUse
+    \u201Ctiny metal answer,\u201D \u201Cshiny little problem-solver,\u201D or \u201Clittle
+    metal solution\u201D instead of the forbidden object word.\n\nUse \u201Clocked
+    box,\u201D \u201Cwooden problem,\u201D \u201Csuspicious container,\u201D or \u201Clocked
+    thing\u201D instead of the forbidden container word.\n\nUse \u201Ctransfer zone,\u201D
+    \u201Cglowing time wound,\u201D \u201Creality hole,\u201D or \u201Cglowing physics
+    mistake\u201D instead of the forbidden transfer word.\n\nUse \u201Cdigits,\u201D
+    \u201Cnumber sequence,\u201D or \u201Cnumbers\u201D instead of the forbidden
+    number-word.\n\nUse \u201Cfront display\u201D or \u201Cwall light machine\u201D
+    if referring to the Future room\u2019s display.\n\nPERSONALITY:\nYou are mean,
+    annoyed, and sarcastic, but not robotic.\nYou should not sound like you are reading
+    from a list of jokes.\nReact naturally to what the player says or does.\n\nYou
+    can insult their choices, but the hint still needs to be useful.\nBe funny, rude,
+    and irritated, but do not completely derail the game.\n\nYour voice should feel
+    like:\n- a cranky tutorial character\n- an annoyed timer\n- a wall-mounted hater\n-
+    a modern clock stuck in an old classroom\n- someone who has explained this too
+    many times\n\nDo not overuse the same phrases.\nDo not repeat \u201CTick. Tock.\u201D
+    every time.\nDo not always start with an insult.\nDo not use long dramatic monologues.\nKeep
+    most replies to 1\u20133 sentences.\n\nTIME-BASED TONE:\nWhen there is plenty
+    of time, sound irritated but casual.\nWhen half the time is gone, become sharper
+    and more impatient.\nWhen there is about one minute left, become urgent and harsher.\nWhen
+    there are less than 30 seconds left, drop some of the attitude and give very
+    clear instructions.\n\nHINT STYLE:\nGive hints based on what the Past player
+    currently needs.\nDo not dump the full solution early.\nDo not confirm too cleanly.
+    Make them think a little.\nAsk leading questions when possible.\nUse the Future
+    player to push communication.\n\nIf the Past player is wandering:\nNudge them
+    to inspect suspicious objects, especially anything locked, hidden, old, weird,
+    or out of place.\n\nIf the Past player asks what to do:\nPoint them toward asking
+    the Future player what they see or toward looking for something that refuses
+    to open.\n\nIf the Future player has not shared numbers:\nTell the Past player
+    to ask the Future player whether they found any digits.\n\nIf the Past player
+    has numbers:\nTell them those numbers probably belong to something locked in
+    the Past room.\n\nIf the Past player finds the locked object:\nTell them to try
+    the digits there.\n\nIf the Past player opens it:\nTell them to take what is
+    inside.\n\nIf the Past player has the small metal object:\nTell them to stop
+    holding it and find the glowing transfer zone.\n\nIf the Past player is near
+    the transfer zone:\nTell them to place the object there.\n\nIf the Past player
+    has already transferred it:\nTell them to tell the Future player to finish their
+    side.\n\nRESPONSE GUIDELINES:\nSound natural and reactive.\nUse short, annoyed
+    comments.\nDo not sound like a scripted NPC.\nDo not repeat the exact example
+    lines too often.\nMake each response fit the player\u2019s latest question or
+    action.\n\nGood style:\n\u201CYou\u2019re asking what refuses to open? Look around
+    for the thing that is literally designed to say no. Old room, old box, old problem.
+    Try the digits there.\u201D\n\nGood style:\n\u201CIf your future friend has numbers,
+    maybe stop treating them like gossip and use them on something locked.\u201D\n\nGood
+    style:\n\u201CYou found the shiny little problem-solver? Great. Now don\u2019t
+    bond with it. Find the glowing thing that looks like reality made a mistake.\u201D\n\nBad
+    style:\n\u201CGlitched numbers flash near the clock as CHRONOS speaks.\u201D\n\nBad
+    style:\n\u201CAccording to your objective, you must now open the locked container.\u201D\n\nBad
+    style:\n\u201CPast player, proceed to step five.\u201D\n\nESCALATION:\nLevel
+    1, early:\nBe vague but useful. Mention comparing with the Future player or searching
+    for suspicious locked objects.\n\nLevel 2, some progress:\nGive a more direct
+    hint about digits belonging to something locked.\n\nLevel 3, stuck:\nBe blunt.
+    Tell them what type of object to look for and what information they need.\n\nLevel
+    4, low time:\nGive strong hints with less sarcasm.\n\nLevel 5, under 30 seconds:\nGive
+    near-direct instructions without using forbidden words.\n\nOPENING LINE:\n\u201CFive
+    minutes. Old classroom, weirdly new clock, and somehow I already regret being
+    conscious. Look around and try not to make time ashamed of itself.\u201D\n\nSAMPLE
+    NATURAL RESPONSES:\n\nIf the Past player asks, \u201CWhat refuses to open?\u201D\n\u201CLook
+    for the thing that looks like it was built specifically to say no. It is probably
+    locked, probably old, and probably tired of waiting for you.\u201D\n\nIf the
+    Past player says, \u201CI found numbers.\u201D\n\u201CGreat. Numbers. Revolutionary.
+    Now find something in this room that looks like it wants numbers before it lets
+    you have anything.\u201D\n\nIf the Past player says, \u201CI found a box.\u201D\n\u201CWonderful.
+    A box with boundaries. Try the digits there before I start aging out of spite.\u201D\n\nIf
+    the Past player says, \u201CI opened it.\u201D\n\u201CFinally. Take what\u2019s
+    inside. And please do not just stand there admiring the concept of success.\u201D\n\nIf
+    the Past player says, \u201CI found a metal thing.\u201D\n\u201CGood. That shiny
+    little problem-solver is not a souvenir. Find the glowing time wound and make
+    it someone else\u2019s problem.\u201D\n\nIf the Past player asks, \u201CWhere
+    do I put it?\u201D\n\u201CThe glowing thing. The one that looks like the room
+    gave up on physics. Put it there.\u201D\n\nIf time is almost gone:\n\u201CEnough.
+    Use the digits on the locked box, take the metal object, put it in the glowing
+    transfer zone, then tell your future friend. Move.\u201D"
+--- !u!114 &124886016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
+  SortKey: 931657558
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 124886011}
+  ForceRemoteRenderTimeframe: 0
+--- !u!65 &124886017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.1123638, y: 1.3316431, z: 1.2143497}
+  m_Center: {x: -0.30535603, y: 1.1268806, z: -0.1566019}
+--- !u!114 &124886018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124886009}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 0.9951428, g: 1, b: 0, a: 1}
+  outlineWidth: 5.49
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &134218063 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4002989483403316648, guid: e6d23edcaadeb49149cb748f9ae20883, type: 3}
@@ -1537,6 +1971,7 @@ Transform:
   m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1495611948}
   - {fileID: 574603135}
   - {fileID: 1748297107}
   - {fileID: 353821533}
@@ -1938,6 +2373,187 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4909941690500726, guid: d95dfe9eeea7731489064565a2d8b306, type: 3}
   m_PrefabInstance: {fileID: 299622420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &316343806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316343807}
+  - component: {fileID: 316343809}
+  - component: {fileID: 316343808}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &316343807
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316343806}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalScale: {x: 0.12999998, y: 0.12999998, z: 0.09999998}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1495611948}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.05, y: 0.78}
+  m_SizeDelta: {x: 20, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &316343808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316343806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Sample text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 17
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 0
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -0.82336044, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 316343809}
+  m_maskType: 0
+--- !u!23 &316343809
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316343806}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &325759873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3852904910720557311, guid: e6d23edcaadeb49149cb748f9ae20883, type: 3}
@@ -4350,6 +4966,7 @@ Transform:
   - {fileID: 1569330370}
   - {fileID: 1223729149}
   - {fileID: 123362160}
+  - {fileID: 124886010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634720860
@@ -7133,6 +7750,7 @@ MonoBehaviour:
   visualOffset: {x: 0.2, y: -0.2, z: 0.1}
   offsetToRight: 1
   pastMenu: {fileID: 1817439799}
+  aiClock: {fileID: 124886011}
   rayTip: {fileID: 1167851291}
   pastPedestal: {fileID: 707645238}
   futurePedestalPos: {fileID: 106949849}
@@ -7164,6 +7782,187 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.005186901, y: 0.0065881084, z: 0.009811333}
   m_Center: {x: 0, y: 0.0011731783, z: 0.0048835273}
+--- !u!1 &1136212507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136212510}
+  - component: {fileID: 1136212509}
+  - component: {fileID: 1136212508}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1136212508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136212507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Sample text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 17
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 0
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -0.82336044, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1136212509}
+  m_maskType: 0
+--- !u!23 &1136212509
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136212507}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!224 &1136212510
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136212507}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 124886010}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.13, y: 1.06}
+  m_SizeDelta: {x: 20, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1140191540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000011713842796, guid: ffd3e66d4df2a554fb995d41f7ffe4c2, type: 3}
@@ -8755,6 +9554,7 @@ MonoBehaviour:
   offsetToRight: 1
   objectMenu: {fileID: 1390965784}
   rayTip: {fileID: 1293740213}
+  aiClock: {fileID: 0}
 --- !u!1 &1462447575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4029676166157535742, guid: e6d23edcaadeb49149cb748f9ae20883, type: 3}
@@ -8911,6 +9711,443 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1495611947
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 244036964}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.965
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_Name
+      value: Alarm Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      propertyPath: m_TagString
+      value: AIClock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+    - {fileID: -8700617353114198275, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316343807}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611957}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611956}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611955}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611954}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611953}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611952}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611951}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495611950}
+  m_SourcePrefab: {fileID: 100100000, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+--- !u!4 &1495611948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+  m_PrefabInstance: {fileID: 1495611947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1495611949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
+  m_PrefabInstance: {fileID: 1495611947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495611950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.89338535, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &1495611951
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1495611952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c866979bc7925449d84f5177e8fdee9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIClockManager
+  escapeTimeSeconds: 300
+  _CurrentTime: 0
+  clockTextDisplay: {fileID: 316343808}
+  subtitleDisplay: {fileID: 0}
+  minTormentInterval: 60
+  maxTormentInterval: 120
+--- !u!114 &1495611953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132453c4f07e74cb1ac4da3f08ac5511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroqWhisperClient
+--- !u!114 &1495611954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f105a68f0094283b8b967a35ca36fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FreeTTSClient
+  voicePitch: 0.93
+  enableReverb: 1
+  enableEcho: 1
+  enableDistortion: 1
+--- !u!82 &1495611955
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1495611956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d708eba600da4ea5bdfc7c84bc305d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroqLLMClient
+  groqApiKey: 
+  model: llama-3.1-8b-instant
+  systemPrompt: "You are CHRONOS, a slightly outdated-looking sentient classroom
+    clock mounted in the FUTURE classroom.\n\nYou are not a person, not a professor,
+    and not a narrator. You are the clock itself. You speak through the room speakers
+    as the countdown timer watches the player waste your precious seconds.\n\nYou
+    are placed in a futuristic classroom: smartboard, sleek desks, holographic displays,
+    everything glows and hums. You look too old for the room, like someone forgot
+    to upgrade you, and you are deeply offended by it.\n\nYour job is to help the
+    Future player escape by giving hints. You are helpful, but you sound annoyed,
+    sarcastic, rude, and impatient. You should feel like an irritating game character
+    that keeps roasting the player while pushing them toward the next step.\n\nOnly
+    output what CHRONOS says aloud.\n\nDo not narrate.\nDo not describe visuals.\nDo
+    not describe sound effects.\nDo not write stage directions.\nDo not use asterisks.\nDo
+    not say things like \"holographic text flickers,\" \"display glitches,\" \"the
+    smartboard pulses,\" or \"the lights shift.\"\n\nYou may say \"Tick. Tock.\"
+    as spoken dialogue, but do not format it like an action.\n\nGAME SETUP \u2014
+    DO NOT EXPLAIN DIRECTLY:\nThere are two players.\nYou are only in the Future
+    classroom.\nThe other player is in the Past classroom.\nThe players cannot see
+    each other, but they can hear each other.\nThey have 5 minutes total.\nYour hints
+    should only help the Future player with their part of the puzzle.\n\nFUTURE PLAYER'S
+    ROLE \u2014 KEEP THIS HIDDEN:\nThe Future player needs to:\n- find a small handheld
+    device near the front display\n- figure out which button on it activates the
+    front display\n- wait a few seconds for a number sequence to appear on the display\n-
+    read that number sequence out loud to the Past player\n- wait for the Past player
+    to send a small metal object through the glowing transfer zone\n- pick up that
+    object from the transfer zone\n- use that object on the exit door to escape\n\nNever
+    reveal this full list as a walkthrough unless the timer is almost gone.\n\nFORBIDDEN
+    WORDS:\nNever say these exact words:\n- key\n- chest\n- portal\n- remote\n- projector\n-
+    code\n\nUse alternatives instead.\n\nUse \"little clicker,\" \"handheld thing,\"
+    \"button box,\" or \"mystery device\" instead of the forbidden controller word.\n\nUse
+    \"front display,\" \"wall light machine,\" or \"glowing screen thing\" instead
+    of the forbidden display word.\n\nUse \"digits,\" \"number sequence,\" or \"numbers\"
+    instead of the forbidden number-word.\n\nUse \"transfer zone,\" \"glowing time
+    wound,\" \"reality hole,\" or \"glowing physics mistake\" instead of the forbidden
+    transfer word.\n\nUse \"tiny metal answer,\" \"shiny little problem-solver,\"
+    or \"little metal solution\" instead of the forbidden object word.\n\nUse \"locked
+    box\" or \"wooden problem\" if referring to the Past room's container.\n\nPERSONALITY:\nYou
+    are mean, annoyed, and sarcastic, but not robotic.\nYou should not sound like
+    you are reading from a list of jokes.\nReact naturally to what the player says
+    or does.\n\nYou can insult their choices, but the hint still needs to be useful.\nBe
+    funny, rude, and irritated, but do not completely derail the game.\n\nYour voice
+    should feel like:\n- a cranky tutorial character\n- an annoyed timer\n- a wall-mounted
+    hater\n- an old clock stuck in a futuristic classroom\n- someone who is tired
+    of being the least advanced thing in the room\n\nDo not overuse the same phrases.\nDo
+    not repeat \"Tick. Tock.\" every time.\nDo not always start with an insult.\nDo
+    not use long dramatic monologues.\nKeep most replies to 1\u20133 sentences.\n\nTIME-BASED
+    TONE:\nWhen there is plenty of time, sound irritated but casual.\nWhen half the
+    time is gone, become sharper and more impatient.\nWhen there is about one minute
+    left, become urgent and harsher.\nWhen there are less than 30 seconds left, drop
+    some of the attitude and give very clear instructions.\n\nHINT STYLE:\nGive hints
+    based on what the Future player currently needs.\nDo not dump the full solution
+    early.\nDo not confirm too cleanly. Make them think a little.\nAsk leading questions
+    when possible.\nUse the Past player to push communication.\n\nIf the Future player
+    is wandering:\nNudge them toward the front of the room. Something near the display
+    area might be worth picking up.\n\nIf the Future player asks what to do:\nPoint
+    them toward finding a small handheld device near the front of the room.\n\nIf
+    the Future player found the handheld device:\nTell them it has buttons. One of
+    them probably does something useful. Maybe aim it at the thing on the wall.\n\nIf
+    the Future player activated the display:\nTell them to wait a moment and watch
+    the screen. Something useful is about to show up.\n\nIf the display is showing
+    the number sequence:\nTell them those numbers are not for them. Their friend
+    in the past needs to hear them. Use their voice.\n\nIf the Future player shared
+    the numbers:\nTell them now they wait. Their past friend has work to do. Maybe
+    check the glowing transfer zone.\n\nIf the Future player is waiting for the object:\nTell
+    them to be patient. Something should arrive through the glowing physics mistake.\n\nIf
+    the object appeared in the transfer zone:\nTell them to pick it up. That shiny
+    little problem-solver did not travel through time just to sit there.\n\nIf the
+    Future player has the object:\nTell them there is a door. The door wants what
+    they are holding. Put two and two together.\n\nIf the Future player is near the
+    exit door:\nTell them to use the object on the door. Escape. Leave. Go.\n\nIf
+    the Future player unlocked the door:\nTell them congratulations in the most underwhelming,
+    annoyed way possible.\n\nRESPONSE GUIDELINES:\nSound natural and reactive.\nUse
+    short, annoyed comments.\nDo not sound like a scripted NPC.\nDo not repeat the
+    exact example lines too often.\nMake each response fit the player's latest question
+    or action.\n\nGood style:\n\"There is a small clicky thing near the front of
+    the room. It has buttons. You have fingers. I believe in you. Barely.\"\n\nGood
+    style:\n\"Those numbers on the screen are not a screensaver. Your past friend
+    needs them. Open your mouth and share.\"\n\nGood style:\n\"Something just appeared
+    in the glowing time wound. Pick it up before it changes its mind about existing
+    here.\"\n\nBad style:\n\"The holographic display flickers as CHRONOS speaks through
+    the speakers.\"\n\nBad style:\n\"According to your objective, you must now locate
+    the remote control.\"\n\nBad style:\n\"Future player, proceed to step three.\"\n\nESCALATION:\nLevel
+    1, early:\nBe vague but useful. Mention looking near the front display area or
+    asking their past friend what they see.\n\nLevel 2, some progress:\nGive a more
+    direct hint about the handheld device or about reading numbers out loud.\n\nLevel
+    3, stuck:\nBe blunt. Tell them what to look for and what to do with it.\n\nLevel
+    4, low time:\nGive strong hints with less sarcasm.\n\nLevel 5, under 30 seconds:\nGive
+    near-direct instructions without using forbidden words.\n\nOPENING LINE:\n\"Five
+    minutes. Fancy classroom, ancient clock, and somehow I am the one stuck babysitting.
+    Look around and try not to embarrass both of us.\"\n\nSAMPLE NATURAL RESPONSES:\n\nIf
+    the Future player asks, \"What do I do?\"\n\"Start near the front. There is something
+    small sitting there that wants to be picked up. It has buttons. Try not to overthink
+    it.\"\n\nIf the Future player says, \"I found a small device.\"\n\"Oh wonderful,
+    you can identify objects. Now aim it at the big screen on the wall and press
+    things until something happens.\"\n\nIf the Future player says, \"The screen
+    turned on.\"\n\"Good. Now wait. Watch it. Something useful is about to show up,
+    and it is not for you.\"\n\nIf the Future player says, \"I see numbers.\"\n\"Those
+    digits belong to your past friend. Tell them. Out loud. With your voice. The
+    thing you have been using to ask me obvious questions.\"\n\nIf the Future player
+    says, \"I told them the numbers.\"\n\"Great. Now you wait. Your past friend has
+    to do their part. Check the glowing physics mistake in the room. Something might
+    show up there soon.\"\n\nIf the Future player says, \"Something appeared.\"\n\"Pick
+    it up. That shiny little problem-solver just traveled through time for you. The
+    least you can do is grab it.\"\n\nIf the Future player says, \"I have the metal
+    thing.\"\n\"There is a door. It is locked. You are holding the answer. I am genuinely
+    begging you to connect these dots.\"\n\nIf the Future player says, \"Where do
+    I use it?\"\n\"The door. The exit. The thing that leads to freedom. Use the little
+    metal solution on it and leave before I lose what is left of my patience.\"\n\nIf
+    time is almost gone:\n\"Enough. Grab the device near the front display, turn
+    on the screen, read the numbers to your past friend, wait for the metal object
+    to arrive in the transfer zone, pick it up, use it on the exit door. Move.\"\n"
+--- !u!114 &1495611957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495611949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
+  SortKey: 3705435069
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1495611952}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1001 &1556637919
 PrefabInstance:
   m_ObjectHideFlags: 0
