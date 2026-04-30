@@ -9554,7 +9554,7 @@ MonoBehaviour:
   offsetToRight: 1
   objectMenu: {fileID: 1390965784}
   rayTip: {fileID: 1293740213}
-  aiClock: {fileID: 0}
+  aiClock: {fileID: 1495611952}
 --- !u!1 &1462447575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4029676166157535742, guid: e6d23edcaadeb49149cb748f9ae20883, type: 3}
@@ -9741,7 +9741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.965
+      value: 4.734
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a45f57a7eb67149059f577c403d5bca8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9837,7 +9837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
   outlineColor: {r: 1, g: 0.89338535, b: 0, a: 1}
-  outlineWidth: 2
+  outlineWidth: 5.49
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -9860,8 +9860,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.5038679, y: 1.5107391, z: 0.556915}
+  m_Center: {x: -0.112869516, y: 0.9716629, z: -0.5494692}
 --- !u!114 &1495611952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9904,7 +9904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f105a68f0094283b8b967a35ca36fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FreeTTSClient
-  voicePitch: 0.93
+  voicePitch: 1.327
   enableReverb: 1
   enableEcho: 1
   enableDistortion: 1
@@ -9920,7 +9920,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -9965,7 +9965,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

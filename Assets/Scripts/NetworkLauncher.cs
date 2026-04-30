@@ -6,6 +6,7 @@ public class NetworkLauncher : MonoBehaviour
 {
     private NetworkRunner _runner;
     private int _maxPlayersSeen = 0;
+    private bool _partnerDisconnected = false;
 
     [Header("Voice Chat")]
     [Tooltip("An invisible object with a Speaker component to play remote voices.")]
@@ -28,19 +29,26 @@ public class NetworkLauncher : MonoBehaviour
         // Check if anyone disconnected mid-game
         if (_runner != null && _runner.IsRunning && _runner.SessionInfo != null)
         {
+            int currentPlayers = _runner.SessionInfo.PlayerCount;
+
             // Record maximum lobby size
-            if (_runner.SessionInfo.PlayerCount > _maxPlayersSeen)
+            if (currentPlayers > _maxPlayersSeen)
             {
-                _maxPlayersSeen = _runner.SessionInfo.PlayerCount;
+                _maxPlayersSeen = currentPlayers;
             }
 
-            // If we successfully had 2 players, and now we only have 1 (meaning the other player quit/crashed)
-            if (_maxPlayersSeen == 2 && _runner.SessionInfo.PlayerCount < 2)
+            // Detect if partner disconnected
+            if (_maxPlayersSeen == 2 && currentPlayers < 2)
             {
-                Debug.LogWarning("Player 2 disconnected! Force rebooting the game...");
+                _partnerDisconnected = true;
+            }
+
+            // If partner rejoined after disconnecting, force a complete restart!
+            if (_partnerDisconnected && currentPlayers == 2)
+            {
+                Debug.LogWarning("Partner rejoined! Rebooting timeline to start from scratch...");
+                _partnerDisconnected = false;
                 _maxPlayersSeen = 0; 
-                
-                // Nuke the session and reload the entire scene to force a totally clean restart for everyone!
                 _runner.Shutdown();
                 UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
             }
@@ -73,20 +81,26 @@ public class NetworkLauncher : MonoBehaviour
                 _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
             }
 
-            //toggle charecters into different rooms
+            // Toggle characters into different rooms
             if (pastCharacter != null && futureCharacter != null)
             {
-                // The server creator is always Player 1
-                if (_runner.IsSharedModeMasterClient)
+                // Lock roles so players don't swap if they reboot
+                int assignedRoom = PlayerPrefs.GetInt("TemporalRole", 0);
+                if (assignedRoom == 0)
                 {
-                    //enable Past, disable Future
+                    assignedRoom = _runner.IsSharedModeMasterClient ? 1 : 2;
+                    PlayerPrefs.SetInt("TemporalRole", assignedRoom);
+                    PlayerPrefs.Save();
+                }
+
+                if (assignedRoom == 1)
+                {
                     pastCharacter.SetActive(true);
                     futureCharacter.SetActive(false);
                     Debug.Log("Spawned as Player 1 in the Past Room!");
                 }
                 else
                 {
-                    //enable Future, disable Past
                     pastCharacter.SetActive(false);
                     futureCharacter.SetActive(true);
                     Debug.Log("Spawned as Player 2 in the Future Room!");

@@ -17,6 +17,7 @@ public class AIClockManager : NetworkBehaviour
     [Header("Timer Settings")]
     public float escapeTimeSeconds = 300f; // 5 minutes
     [Networked] public float CurrentTime { get; set; }
+    [Networked] public NetworkBool TimerStarted { get; set; }
 
     [Header("UI (Optional)")]
     public TMP_Text clockTextDisplay;
@@ -72,9 +73,10 @@ public class AIClockManager : NetworkBehaviour
     {
         isInitialized = true;
 
-        if (Object.HasStateAuthority)
+        if (Object.HasStateAuthority && !TimerStarted)
         {
             CurrentTime = escapeTimeSeconds;
+            TimerStarted = true;
         }
 
         // Start the random torment loop!
@@ -116,7 +118,7 @@ public class AIClockManager : NetworkBehaviour
         if (!isInitialized || Object == null || !Object.IsValid) return;
 
         // ---------- TIMER SYNC ----------
-        if (Object.HasStateAuthority && CurrentTime > 0)
+        if (Object.HasStateAuthority && CurrentTime > 0 && Runner.SessionInfo != null && Runner.SessionInfo.PlayerCount >= 2)
         {
             CurrentTime -= Runner.DeltaTime;
             if (CurrentTime < 0) CurrentTime = 0;
@@ -241,7 +243,16 @@ public class AIClockManager : NetworkBehaviour
 
             // Build a context-aware taunt prompt based on remaining time
             string timeContext = GetTimeContext();
-            string tormentPrompt = $"The players have NOT asked you anything. You are bored and want to torment them. {timeContext} Say something short (1 sentence) to mock, rush, or scare them. Be creative and mean.";
+            
+            string tormentPrompt;
+            if (Runner != null && Runner.SessionInfo != null && Runner.SessionInfo.PlayerCount < 2)
+            {
+                tormentPrompt = $"The player's partner has disconnected or vanished from the timeline! Roast the player for being left all alone. Keep it short (1 sentence) and sarcastic.";
+            }
+            else
+            {
+                tormentPrompt = $"The players have NOT asked you anything. You are bored and want to torment them. {timeContext} Say something short (1 sentence) to mock, rush, or scare them. Be creative and mean.";
+            }
 
             Debug.Log("[AIClock] Tormenting the players...");
             AskClockSafe(tormentPrompt);

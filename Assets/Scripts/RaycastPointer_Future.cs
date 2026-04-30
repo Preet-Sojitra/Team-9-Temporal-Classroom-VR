@@ -106,6 +106,10 @@ public class RaycastPointerFuture : MonoBehaviour
             // --- AI CLOCK PUSH-TO-TALK ---
             else if (IsAIClock(hitObject) && aiClock != null)
             {
+                // Show highlight on the tagged AIClock object (where Outline lives)
+                GameObject clockObj = FindAIClockParent(hitObject);
+                UpdateHighlight(clockObj);
+
                 if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     isTalkingToClock = true;
@@ -168,9 +172,14 @@ public class RaycastPointerFuture : MonoBehaviour
 
     private bool IsAIClock(GameObject obj)
     {
-        if (obj.CompareTag("AIClock")) return true;
-        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return true;
-        if (obj.transform.root.CompareTag("AIClock")) return true;
-        return false;
+        return FindAIClockParent(obj) != null;
+    }
+
+    private GameObject FindAIClockParent(GameObject obj)
+    {
+        if (obj.CompareTag("AIClock")) return obj;
+        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return obj.transform.parent.gameObject;
+        if (obj.transform.root.CompareTag("AIClock")) return obj.transform.root.gameObject;
+        return null;
     }
 }
