@@ -15,6 +15,13 @@ public class ObjectMenu : MonoBehaviour
     public GameObject projectorCodeScreen; // The UI/Plane with the code
                                            // public AudioSource projectorAudio;  // Placeholder for sound
 
+    [Header("Beam Auto Setup")]
+    public Transform projectorEmitPoint;  // empty at projector lens
+    public Transform screenTransform;     // the projector screen object
+
+    [Header("Projector Beam")]
+    public GameObject projectorBeamObject; // Drag your ProjectorBeam GameObject here
+
     private Canvas menuCanvas;
     private GameObject currentHoveredButton;
     private Camera mainCamera;
@@ -74,7 +81,12 @@ public class ObjectMenu : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
 
         // 4. Activate Visuals
-        if (beamObject != null) beamObject.SetActive(true);
+        // With this:
+        if (projectorBeamObject != null)
+        {
+            projectorBeamObject.SetActive(true);
+        }
+
         if (projectorCodeScreen != null)
         {
             // First, turn on the GameObject

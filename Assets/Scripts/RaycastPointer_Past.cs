@@ -39,15 +39,6 @@ public class RaycastPointer_Past : MonoBehaviour
 
     void Start()
     {
-        // if (pastPedestal != null)
-        // {
-        //     if (pastPedestal.TryGetComponent<Outline>(out var outline))
-        //     {
-        //         outline.enabled = true;
-        //         pedestalDefaultColor = outline.OutlineColor; // Remember the starting color
-        //         outline.OutlineWidth = 2f;
-        //     }
-        // }
 
         if (lineRenderer != null)
         {
@@ -69,159 +60,6 @@ public class RaycastPointer_Past : MonoBehaviour
         ShootRaycast();
     }
 
-    // void ShootRaycast()
-    // {
-    //     if (pastMenu == null) return;
-
-    //     // 1. Math Ray
-    //     Vector3 mathOrigin = transform.position;
-    //     Vector3 direction = transform.forward;
-    //     Ray ray = new Ray(mathOrigin, direction);
-    //     RaycastHit hit;
-
-    //     // --- 1. HANDLE GRABBED OBJECT FIRST ---
-    //     // This moves the key EVERY frame, whether the ray hits a wall or not.
-    //     if (grabbedKey != null)
-    //     {
-    //         // Position the key at rayTip while holding
-    //         grabbedKey.transform.position = rayTip != null ? rayTip.position : mathOrigin + (direction * 1.5f);
-
-    //         // Are we looking at the pedestal?
-    //         if (hitObject == pastPedestal || hitObject.transform.IsChildOf(pastPedestal.transform))
-    //         {
-    //             // 1. Give Visual Feedback (Yellow Outline)
-    //             SetPedestalHighlight(true);
-
-    //             // 2. Handle the Drop
-    //             if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
-    //             {
-    //                 TeleportKeyToFuture();
-    //             }
-    //         }
-    //         else
-    //         {
-    //             // Not looking at pedestal? Reset color
-    //             SetPedestalHighlight(false);
-    //         }
-    //         return; // Exit so we don't highlight other objects while holding the key
-    //     }
-
-    //     // 2. Visual Origin logic
-    //     float sideDirection = offsetToRight ? 1f : -1f;
-    //     Vector3 visualOrigin = mathOrigin
-    //                         + (transform.right * visualOffset.x * sideDirection)
-    //                         + (transform.up * visualOffset.y)
-    //                         + (transform.forward * visualOffset.z);
-
-    //     lineRenderer.useWorldSpace = true;
-    //     lineRenderer.SetPosition(0, visualOrigin);
-
-
-    //     // 3. Physics Check
-    //     if (Physics.Raycast(ray, out hit, raycastLength))
-    //     {
-    //         lineRenderer.SetPosition(1, hit.point);
-    //         GameObject hitObject = hit.collider.gameObject;
-
-
-    //         if (grabbedKey != null)
-    //         {
-    //             // Position the key at rayTip while holding
-    //             grabbedKey.transform.position = rayTip != null ? rayTip.position : mathOrigin + (direction * 2f);
-
-    //             // If looking at the pedestal and pressing X
-    //             if (hitObject == pastPedestal)
-    //             {
-    //                 if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
-    //                 {
-    //                     TeleportKeyToFuture();
-    //                 }
-    //             }
-    //             return; // Don't process other highlights while holding the key
-    //         }
-
-    //         if (Input.GetKey(KeyCode.F)) // Hold D while playing to see hits
-    //         {
-    //             Debug.Log("Ray currently hitting: " + hitObject.name + " on Layer: " + hitObject.layer);
-    //         }
-
-
-    //         // CASE 1: Keypad Menu is OPEN
-    //         if (pastMenu.IsMenuOpen())
-    //         {
-    //             pastMenu.HoverButton(hitObject);
-
-    //             if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
-    //             {
-    //                 pastMenu.SelectButton();
-    //             }
-    //             return; // Prioritize menu over world highlights
-    //         }
-
-    //         if (hitObject.CompareTag("Key"))
-    //         {
-    //             if (currentHoveredObject != hitObject)
-    //             {
-    //                 ClearHighlight();
-    //                 currentHoveredObject = hitObject;
-    //                 SetHighlight(currentHoveredObject, true);
-    //                 Debug.Log("HIT THE KEY!");
-    //             }
-
-    //             if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
-    //             {
-    //                 GrabKey(hitObject);
-    //             }
-    //         }
-    //         // CASE 2: Menu is CLOSED - World interaction (Chest, Key, etc.)
-    //         else if (hitObject.CompareTag("Interactable"))
-    //         {
-    //             if (currentHoveredObject != hitObject)
-    //             {
-    //                 ClearHighlight();
-    //                 currentHoveredObject = hitObject;
-    //                 SetHighlight(currentHoveredObject, true);
-    //                 Debug.Log("Highlighting Interactable: " + hitObject.name);
-    //             }
-
-    //             // Press X to open the keypad menu
-    //             if (Input.GetButtonDown("js10") || Input.GetKeyDown(KeyCode.X))
-    //             {
-    //                 Debug.Log("X Pressed on: " + hitObject.name);
-    //                 // Specifically check if we are looking at the closed chest
-    //                 if (hitObject.name == "chest_close")
-    //                 {
-    //                     pastMenu.OpenMenu();
-    //                 }
-    //             }
-    //         }
-    //         else
-    //         {
-    //             ClearHighlight();
-    //         }
-    //     }
-    //     else
-    //     {
-    //         SetPedestalHighlight(false);
-    //         // Ray hits nothing
-    //         Vector3 endPoint = mathOrigin + direction * raycastLength;
-    //         lineRenderer.SetPosition(1, endPoint);
-
-    //         // If nothing is hit but we have a key, move key to the end of the ray
-    //         if (grabbedKey != null)
-    //         {
-    //             grabbedKey.transform.position = endPoint;
-    //         }
-
-    //         ClearHighlight();
-
-    //         if (pastMenu.IsMenuOpen())
-    //         {
-    //             pastMenu.HoverButton(null);
-    //         }
-    //     }
-    // }
-
     void ShootRaycast()
     {
         if (pastMenu == null) return;
@@ -242,7 +80,7 @@ public class RaycastPointer_Past : MonoBehaviour
         float sideDirection = offsetToRight ? 1f : -1f;
         Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
         Vector3 worldOrigin = lineRenderer.transform.TransformPoint(localOrigin);
-        
+
         lineRenderer.useWorldSpace = true;
         lineRenderer.SetPosition(0, worldOrigin);
 
@@ -324,30 +162,30 @@ public class RaycastPointer_Past : MonoBehaviour
     }
 
     void SetPedestalHighlight(bool isHovering)
-{
-    if (pastPedestal == null) return;
-
-    // Search in children too, not just root
-    Outline outline = pastPedestal.GetComponentInChildren<Outline>();
-    
-    if (outline != null)
     {
-        if (isHovering)
+        if (pastPedestal == null) return;
+
+        // Search in children too, not just root
+        Outline outline = pastPedestal.GetComponentInChildren<Outline>();
+
+        if (outline != null)
         {
-            outline.enabled = true;
-            outline.OutlineColor = Color.yellow;
-            outline.OutlineWidth = 8f;
+            if (isHovering)
+            {
+                outline.enabled = true;
+                outline.OutlineColor = Color.yellow;
+                outline.OutlineWidth = 8f;
+            }
+            else
+            {
+                outline.enabled = false;
+            }
         }
         else
         {
-            outline.enabled = false;
+            Debug.LogWarning("No Outline component found on pedestal or its children!");
         }
     }
-    else
-    {
-        Debug.LogWarning("No Outline component found on pedestal or its children!");
-    }
-}
 
     void TeleportKeyToFuture()
     {
@@ -355,107 +193,39 @@ public class RaycastPointer_Past : MonoBehaviour
         StartCoroutine(KeyTeleportSequence());
     }
 
-    // System.Collections.IEnumerator KeyTeleportSequence()
-    // {
-    //     GameObject keyToMove = grabbedKey;
-    //     grabbedKey = null;
-
-    //     keyToMove.transform.SetParent(null);
-
-    //     // Position on Past Pedestal
-    //     if (pastDropPoint != null)
-    //     {
-    //         keyToMove.transform.position = pastDropPoint.position;
-    //     }
-    //     else
-    //     {
-    //         keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 0.8f;
-    //     }
-
-    //     // Ensure physics doesn't make it fall through the floor
-    //     Rigidbody rb = keyToMove.GetComponent<Rigidbody>();
-    //     if (rb != null) rb.isKinematic = true;
-
-    //     yield return new WaitForSeconds(waitTimeBeforeTeleport);
-
-    //     // TELEPORT TO FUTURE
-    //     Debug.Log("Teleporting Key to Future Pedestal!");
-    //     keyToMove.transform.position = futurePedestalPos.position;
-    //     keyToMove.transform.rotation = futurePedestalPos.rotation;
-
-    //     // Optional: Re-enable physics in the future if needed
-    //     // if (rb != null) rb.isKinematic = false; 
-    // }
-
     System.Collections.IEnumerator KeyTeleportSequence()
-{
-    GameObject keyToMove = grabbedKey;
-    grabbedKey = null;
-
-    keyToMove.transform.SetParent(null);
-
-    if (pastDropPoint != null)
     {
+        GameObject keyToMove = grabbedKey;
+        grabbedKey = null;
+
         keyToMove.transform.position = pastDropPoint.position;
         keyToMove.transform.rotation = pastDropPoint.rotation;
+        keyToMove.transform.SetParent(null);
+
+        yield return new WaitForSeconds(waitTimeBeforeTeleport);
+
+        // Retry finding it for up to 5 seconds in case it spawned late
+        KeyTeleportHack hack = null;
+        float searchTimeout = 5f;
+        while (hack == null && searchTimeout > 0f)
+        {
+            hack = FindObjectOfType<KeyTeleportHack>();
+            if (hack == null)
+            {
+                searchTimeout -= Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if (hack != null)
+        {
+            hack.RequestTeleport();
+        }
+        else
+        {
+            Debug.LogError("KeyTeleportHack not found after waiting! Was the prefab spawned by MasterClient?");
+        }
     }
-
-    if (keyToMove.GetComponent<Collider>())
-        keyToMove.GetComponent<Collider>().enabled = true;
-
-    yield return new WaitForSeconds(waitTimeBeforeTeleport);
-
-    // ---- NETWORK SYNC FIX ----
-    PhotonView pv = keyToMove.GetComponent<PhotonView>();
-    if (pv != null)
-    {
-        // Request ownership so THIS client can move it
-        pv.RequestOwnership();
-        yield return new WaitForSeconds(0.1f); // small wait for ownership transfer
-
-        // Use RPC to move on ALL clients
-        pv.RPC("TeleportToFuture", RpcTarget.AllBuffered,
-            futurePedestalPos.position,
-            futurePedestalPos.rotation);
-    }
-    else
-    {
-        // Fallback if no PhotonView (local only)
-        Debug.LogWarning("Key has no PhotonView! Teleport won't sync.");
-        keyToMove.transform.position = futurePedestalPos.position;
-        keyToMove.transform.rotation = futurePedestalPos.rotation;
-    }
-}
-
-    // System.Collections.IEnumerator KeyTeleportSequence()
-    // {
-    //     GameObject keyToMove = grabbedKey;
-    //     grabbedKey = null;
-
-    //     keyToMove.transform.SetParent(null);
-
-    //     // Use the explicit drop point we created visually
-    //     if (pastDropPoint != null)
-    //     {
-    //         keyToMove.transform.position = pastDropPoint.position;
-    //         keyToMove.transform.rotation = pastDropPoint.rotation;
-    //     }
-    //     else
-    //     {
-    //         // Fallback: Use a much higher offset if you forgot to assign the point
-    //         keyToMove.transform.position = pastPedestal.transform.position + Vector3.up * 1.5f;
-    //     }
-
-    //     if (keyToMove.GetComponent<Collider>())
-    //         keyToMove.GetComponent<Collider>().enabled = true;
-
-    //     // Now bring back the wait and teleport
-    //     yield return new WaitForSeconds(waitTimeBeforeTeleport);
-
-    //     keyToMove.transform.position = futurePedestalPos.position;
-    //     keyToMove.transform.rotation = futurePedestalPos.rotation;
-    // }
-
 
     void GrabKey(GameObject key)
     {

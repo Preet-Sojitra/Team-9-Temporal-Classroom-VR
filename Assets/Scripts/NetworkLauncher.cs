@@ -17,6 +17,9 @@ public class NetworkLauncher : MonoBehaviour
     [Tooltip("Drag the Character Future GameObject here")]
     public GameObject futureCharacter;
 
+    [Header("Key Teleport")]
+    public GameObject keyTeleportPrefab;
+
     async void Start()
     {
         //start connection when scene loads
@@ -71,6 +74,11 @@ public class NetworkLauncher : MonoBehaviour
             if (voiceNetworkPrefab != null)
             {
                 _runner.Spawn(voiceNetworkPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
+            }
+            // WITH this:
+            if (keyTeleportPrefab != null && _runner.IsSharedModeMasterClient)
+            {
+                _runner.Spawn(keyTeleportPrefab, Vector3.zero, Quaternion.identity, _runner.LocalPlayer);
             }
 
             //toggle characters into different rooms based on Lobby Choice

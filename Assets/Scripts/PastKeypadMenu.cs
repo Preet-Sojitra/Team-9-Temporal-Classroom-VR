@@ -132,7 +132,12 @@ public class PastKeypadMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         if (closedChest != null) closedChest.SetActive(false); // Remove the closed one
-        if (openChest != null) openChest.SetActive(true);    // Show the open one
+        if (openChest != null)
+        {
+            openChest.SetActive(true);    // Show the open one
+            // Explicitly enable the key since it starts disabled
+            if (keyInside != null) keyInside.SetActive(true);
+        }
 
         CloseMenu(); // Hide the keypad so they can see the chest
     }
