@@ -20,6 +20,10 @@ public class RaycastPointer_Past : MonoBehaviour
     [Header("Past Room Reference")]
     public PastKeypadMenu pastMenu;
 
+    [Header("AI Clock")]
+    public AIClockManager aiClock;
+    private bool isTalkingToClock = false;
+
     private GameObject currentHoveredObject;
 
     [Header("Key Interaction")]
@@ -130,6 +134,26 @@ public class RaycastPointer_Past : MonoBehaviour
                 {
                     if (hitObject.CompareTag("Key")) GrabKey(hitObject);
                     else if (hitObject.name == "chest_close") pastMenu.OpenMenu();
+                }
+            }
+            // --- AI CLOCK PUSH-TO-TALK ---
+            else if (IsAIClock(hitObject) && aiClock != null)
+            {
+                // Highlight the clock parent object
+                GameObject clockObj = hitObject.CompareTag("AIClock") ? hitObject : hitObject.transform.parent.gameObject;
+                UpdateHighlight(clockObj);
+
+                // Press and HOLD button to talk to the clock
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
+                {
+                    isTalkingToClock = true;
+                    aiClock.OnPlayerStartTalking();
+                }
+                // Release button to stop recording and send question
+                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
+                {
+                    isTalkingToClock = false;
+                    aiClock.OnPlayerStopTalking();
                 }
             }
             else
@@ -264,5 +288,16 @@ public class RaycastPointer_Past : MonoBehaviour
     private void OnEnable()
     {
         if (lineRenderer != null) lineRenderer.enabled = true;
+    }
+
+    private bool IsAIClock(GameObject obj)
+    {
+        // Check the hit object itself
+        if (obj.CompareTag("AIClock")) return true;
+        // Check parent (since raycast hits child meshes like obj1, obj2, etc.)
+        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return true;
+        // Check root
+        if (obj.transform.root.CompareTag("AIClock")) return true;
+        return false;
     }
 }

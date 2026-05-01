@@ -20,7 +20,11 @@ public class RaycastPointerFuture : MonoBehaviour
     [Header("Interaction State")]
     private GameObject currentHoveredObject;
     private GameObject grabbedKey = null;
-    public Transform rayTip; // Same setup as Past room for holding the key
+    public Transform rayTip;
+
+    [Header("AI Clock")]
+    public AIClockManager aiClock;
+    private bool isTalkingToClock = false;
 
     [Header("Future Pedestal")]
     public GameObject futurePedestal;  // drag in Inspector
@@ -129,6 +133,24 @@ public class RaycastPointerFuture : MonoBehaviour
                     }
                 }
             }
+            // --- AI CLOCK PUSH-TO-TALK ---
+            else if (IsAIClock(hitObject) && aiClock != null)
+            {
+                // Show highlight on the tagged AIClock object (where Outline lives)
+                GameObject clockObj = FindAIClockParent(hitObject);
+                UpdateHighlight(clockObj);
+
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
+                {
+                    isTalkingToClock = true;
+                    aiClock.OnPlayerStartTalking();
+                }
+                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
+                {
+                    isTalkingToClock = false;
+                    aiClock.OnPlayerStopTalking();
+                }
+            }
             else
             {
                 ClearHighlight();
@@ -220,5 +242,18 @@ public class RaycastPointerFuture : MonoBehaviour
         Debug.Log("Key dropped at future spawn point!");
         grabbedKey = null;
         SetPedestalHighlight(false);
+    }
+
+    private bool IsAIClock(GameObject obj)
+    {
+        return FindAIClockParent(obj) != null;
+    }
+
+    private GameObject FindAIClockParent(GameObject obj)
+    {
+        if (obj.CompareTag("AIClock")) return obj;
+        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return obj.transform.parent.gameObject;
+        if (obj.transform.root.CompareTag("AIClock")) return obj.transform.root.gameObject;
+        return null;
     }
 }
