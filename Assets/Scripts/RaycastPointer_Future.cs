@@ -78,6 +78,8 @@ public class RaycastPointerFuture : MonoBehaviour
         // 3. Physics Check
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
+            Debug.Log("Hit: " + hit.collider.gameObject.name + " | Tag: " + hit.collider.gameObject.tag);
+
             lineRenderer.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject;
 
@@ -100,6 +102,29 @@ public class RaycastPointerFuture : MonoBehaviour
                     SetPedestalHighlight(false);
                 }
                 return; // Don't process menu or other highlights while holding
+            }
+
+            if (IsAIClock(hitObject) && aiClock != null)
+            {
+                GameObject clockObj = FindAIClockParent(hitObject);
+                Debug.Log("Clock obj found: " + clockObj.name);
+
+                Outline o = clockObj.GetComponent<Outline>();
+                Debug.Log("Outline found: " + (o != null) + " | enabled: " + (o != null ? o.enabled.ToString() : "N/A"));
+
+                UpdateHighlight(clockObj);
+
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
+                {
+                    isTalkingToClock = true;
+                    aiClock.OnPlayerStartTalking();
+                }
+                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
+                {
+                    isTalkingToClock = false;
+                    aiClock.OnPlayerStopTalking();
+                }
+                return;
             }
 
 
@@ -131,24 +156,6 @@ public class RaycastPointerFuture : MonoBehaviour
                     {
                         objectMenu.OpenMenu(hitObject);
                     }
-                }
-            }
-            // --- AI CLOCK PUSH-TO-TALK ---
-            else if (IsAIClock(hitObject) && aiClock != null)
-            {
-                // Show highlight on the tagged AIClock object (where Outline lives)
-                GameObject clockObj = FindAIClockParent(hitObject);
-                UpdateHighlight(clockObj);
-
-                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
-                {
-                    isTalkingToClock = true;
-                    aiClock.OnPlayerStartTalking();
-                }
-                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
-                {
-                    isTalkingToClock = false;
-                    aiClock.OnPlayerStopTalking();
                 }
             }
             else
@@ -193,11 +200,13 @@ public class RaycastPointerFuture : MonoBehaviour
 
     void UpdateHighlight(GameObject hitObject)
     {
+        Debug.Log("UpdateHighlight called. current: " + (currentHoveredObject?.name ?? "null") + " new: " + hitObject.name);
         if (currentHoveredObject != hitObject)
         {
             ClearHighlight();
             currentHoveredObject = hitObject;
             SetHighlight(currentHoveredObject, true);
+            Debug.Log("SetHighlight called with true");
         }
     }
 

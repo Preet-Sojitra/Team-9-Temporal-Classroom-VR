@@ -91,6 +91,8 @@ public class RaycastPointer_Past : MonoBehaviour
         // --- 4. PHYSICS CHECK ---
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
+            Debug.Log("Hit: " + hit.collider.gameObject.name + " | Tag: " + hit.collider.gameObject.tag);
+
             lineRenderer.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject; // hitObject is created HERE
 
@@ -127,33 +129,36 @@ public class RaycastPointer_Past : MonoBehaviour
                 return;
             }
 
-            if (hitObject.CompareTag("Key") || hitObject.CompareTag("Interactable"))
+            if (IsAIClock(hitObject) && aiClock != null)
+            {
+                GameObject clockObj = FindAIClockParent(hitObject);
+                UpdateHighlight(clockObj);
+
+                // DEBUG
+                Outline o = clockObj.GetComponent<Outline>();
+                Outline oChild = clockObj.GetComponentInChildren<Outline>();
+                Debug.Log($"Clock: {clockObj.name} | GetComponent Outline: {o != null} | GetComponentInChildren Outline: {oChild != null}");
+                if (oChild != null) Debug.Log($"Outline enabled: {oChild.enabled} | on object: {oChild.gameObject.name}");
+
+                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
+                {
+                    isTalkingToClock = true;
+                    aiClock.OnPlayerStartTalking();
+                }
+                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
+                {
+                    isTalkingToClock = false;
+                    aiClock.OnPlayerStopTalking();
+                }
+                return;  // ← critical, prevents falling through to ClearHighlight
+            }
+            else if (hitObject.CompareTag("Key") || hitObject.CompareTag("Interactable"))
             {
                 UpdateHighlight(hitObject);
                 if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
                 {
                     if (hitObject.CompareTag("Key")) GrabKey(hitObject);
                     else if (hitObject.name == "chest_close") pastMenu.OpenMenu();
-                }
-            }
-            // --- AI CLOCK PUSH-TO-TALK ---
-            else if (IsAIClock(hitObject) && aiClock != null)
-            {
-                // Highlight the clock parent object
-                GameObject clockObj = hitObject.CompareTag("AIClock") ? hitObject : hitObject.transform.parent.gameObject;
-                UpdateHighlight(clockObj);
-
-                // Press and HOLD button to talk to the clock
-                if (Input.GetButtonDown("js2") || Input.GetKeyDown(KeyCode.X))
-                {
-                    isTalkingToClock = true;
-                    aiClock.OnPlayerStartTalking();
-                }
-                // Release button to stop recording and send question
-                if (isTalkingToClock && (Input.GetButtonUp("js2") || Input.GetKeyUp(KeyCode.X)))
-                {
-                    isTalkingToClock = false;
-                    aiClock.OnPlayerStopTalking();
                 }
             }
             else
@@ -262,12 +267,19 @@ public class RaycastPointer_Past : MonoBehaviour
         Debug.Log("Key Attached to Player!");
     }
 
+    // void SetHighlight(GameObject obj, bool state)
+    // {
+    //     if (obj != null && obj.TryGetComponent<Outline>(out var outline))
+    //     {
+    //         outline.enabled = state;
+    //     }
+    // }
+
     void SetHighlight(GameObject obj, bool state)
     {
-        if (obj != null && obj.TryGetComponent<Outline>(out var outline))
-        {
+        Outline outline = obj.GetComponent<Outline>() ?? obj.GetComponentInChildren<Outline>();
+        if (outline != null)
             outline.enabled = state;
-        }
     }
 
     void ClearHighlight()
@@ -290,14 +302,27 @@ public class RaycastPointer_Past : MonoBehaviour
         if (lineRenderer != null) lineRenderer.enabled = true;
     }
 
+    // private bool IsAIClock(GameObject obj)
+    // {
+    //     // Check the hit object itself
+    //     if (obj.CompareTag("AIClock")) return true;
+    //     // Check parent (since raycast hits child meshes like obj1, obj2, etc.)
+    //     if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return true;
+    //     // Check root
+    //     if (obj.transform.root.CompareTag("AIClock")) return true;
+    //     return false;
+    // }
+
     private bool IsAIClock(GameObject obj)
     {
-        // Check the hit object itself
-        if (obj.CompareTag("AIClock")) return true;
-        // Check parent (since raycast hits child meshes like obj1, obj2, etc.)
-        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return true;
-        // Check root
-        if (obj.transform.root.CompareTag("AIClock")) return true;
-        return false;
+        return FindAIClockParent(obj) != null;
+    }
+
+    private GameObject FindAIClockParent(GameObject obj)
+    {
+        if (obj.CompareTag("AIClock")) return obj;
+        if (obj.transform.parent != null && obj.transform.parent.CompareTag("AIClock")) return obj.transform.parent.gameObject;
+        if (obj.transform.root.CompareTag("AIClock")) return obj.transform.root.gameObject;
+        return null;
     }
 }
