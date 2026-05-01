@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d708eba600da4ea5bdfc7c84bc305d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroqLLMClient
-  groqApiKey: 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
+  groqApiKey: 
   model: llama-3.1-8b-instant
   systemPrompt: "You are CHRONOS, a new-looking sentient classroom clock mounted
     in the PAST classroom.\n\nYou are not a person, not a professor, and not a narrator.
@@ -11840,7 +11840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d708eba600da4ea5bdfc7c84bc305d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroqLLMClient
-  groqApiKey: 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
+  groqApiKey: 
   model: llama-3.1-8b-instant
   systemPrompt: "You are CHRONOS, a slightly outdated-looking sentient classroom
     clock mounted in the FUTURE classroom.\n\nYou are not a person, not a professor,
