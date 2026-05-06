@@ -1,4 +1,4 @@
-﻿//
+//
 //  OutlineFill.shader
 //  QuickOutline
 //
@@ -16,29 +16,27 @@ Shader "Custom/Outline Fill" {
 
   SubShader {
     Tags {
-      "Queue" = "Transparent+110"
-      "RenderType" = "Transparent"
+      "Queue" = "Geometry+20"
+      "RenderType" = "Opaque"
       "DisableBatching" = "True"
     }
 
     Pass {
       Name "Fill"
       Cull Front
-      ZTest [_ZTest]
+      ZTest LEqual
       ZWrite Off
       Blend SrcAlpha OneMinusSrcAlpha
       ColorMask RGB
 
-      Stencil {
-        Ref 1
-        Comp NotEqual
-      }
+      // Stencil removed for Android compatibility
 
       CGPROGRAM
       #include "UnityCG.cginc"
 
       #pragma vertex vert
       #pragma fragment frag
+      #pragma multi_compile_instancing
 
       struct appdata {
         float4 vertex : POSITION;

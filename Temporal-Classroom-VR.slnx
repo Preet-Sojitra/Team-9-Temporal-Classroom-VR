@@ -4,8 +4,8 @@
   <Project Path="PhotonRealtime.csproj" />
   <Project Path="PhotonUnityNetworking.Editor.csproj" />
   <Project Path="PhotonUnityNetworking.csproj" />
-  <Project Path="PhotonVoice.PUN.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="PhotonVoice.PUN.Editor.csproj" />
   <Project Path="PhotonVoice.csproj" />
   <Project Path="PhotonUnityNetworking.Utilities.csproj" />
   <Project Path="Fusion.Unity.csproj" />
