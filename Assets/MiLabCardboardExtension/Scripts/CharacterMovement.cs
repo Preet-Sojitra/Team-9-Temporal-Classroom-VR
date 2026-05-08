@@ -72,6 +72,9 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
     private float verticalVelocity;
 
+    [Tooltip("If true, the player cannot move, but gravity still applies.")]
+    public bool isFrozen = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -85,6 +88,23 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        if (isFrozen)
+        {
+            // Just apply gravity to prevent floating if frozen in the air
+            Vector3 frozenMove = Vector3.zero;
+            if (controller.isGrounded)
+            {
+                if (verticalVelocity < 0) verticalVelocity = -2f;
+            }
+            else
+            {
+                verticalVelocity += gravity * Time.deltaTime;
+            }
+            frozenMove.y = verticalVelocity;
+            controller.Move(frozenMove * Time.deltaTime);
+            return;
+        }
+
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
