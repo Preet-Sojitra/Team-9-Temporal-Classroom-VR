@@ -15,7 +15,7 @@ using TMPro;
 public class AIClockManager : NetworkBehaviour
 {
     [Header("Timer Settings")]
-    public float escapeTimeSeconds = 300f; // 5 minutes
+    public float escapeTimeSeconds = 420f; // 7 minutes
     [Networked] public float CurrentTime { get; set; }
     [Networked] public NetworkBool TimerStarted { get; set; }
 
@@ -62,6 +62,9 @@ public class AIClockManager : NetworkBehaviour
 
     private void Awake()
     {
+        // Force the timer to 7 minutes (420 seconds) overriding any old Unity Inspector values
+        escapeTimeSeconds = 420f;
+
         // Always grab references early so nothing is null
         llmClient = GetComponent<GroqLLMClient>();
         ttsClient = GetComponent<FreeTTSClient>();

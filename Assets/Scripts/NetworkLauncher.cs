@@ -116,19 +116,32 @@ public class NetworkLauncher : MonoBehaviour
                 }
             }
 
-            await Task.Delay(1000);
-
-            // Find and disable the blindfold on the active character
-            if (pastCharacter.activeSelf || futureCharacter.activeSelf)
+            var activeChar = pastCharacter.activeSelf ? pastCharacter : futureCharacter;
+            
+            // Freeze movement immediately so they can't wander around blind
+            if (activeChar != null)
             {
-                var canvas = pastCharacter.GetComponentInChildren<Canvas>(true);
+                var moveScript = activeChar.GetComponentInChildren<CharacterMovement>(true);
+                if (moveScript != null) moveScript.isFrozen = true;
+            }
+
+            Debug.Log("Waiting for Player 2 to join before starting...");
+            // Wait for both players to be fully connected
+            while (_runner != null && _runner.IsRunning && _runner.SessionInfo != null && _runner.SessionInfo.PlayerCount < 2)
+            {
+                await Task.Delay(500);
+            }
+            Debug.Log("Both players synced! Starting game.");
+
+            // Unfreeze movement and remove blindfold
+            if (activeChar != null)
+            {
+                var moveScript = activeChar.GetComponentInChildren<CharacterMovement>(true);
+                if (moveScript != null) moveScript.isFrozen = false;
+
+                var canvas = activeChar.GetComponentInChildren<Canvas>(true);
                 if (canvas != null) canvas.gameObject.SetActive(false);
             }
-            // else if (futureCharacter.activeSelf)
-            // {
-            //     var canvas = futureCharacter.GetComponentInChildren<Canvas>(true);
-            //     if(canvas != null) canvas.gameObject.SetActive(false);
-            // }
 
             //toggle charecters into different rooms
             // if (pastCharacter != null && futureCharacter != null)
