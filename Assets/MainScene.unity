@@ -2735,7 +2735,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 0.7688679, b: 0.7688679, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -13812,6 +13812,7 @@ GameObject:
   - component: {fileID: 1570964432}
   - component: {fileID: 1570964431}
   - component: {fileID: 1570964430}
+  - component: {fileID: 1570964433}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -13912,6 +13913,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570964428}
   m_CullTransparentMesh: 1
+--- !u!65 &1570964433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570964428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 34.17317, y: 53.084553, z: 3.4990158}
+  m_Center: {x: 1.1680826, y: 1.2971658, z: 1.6025264}
 --- !u!1 &1571592713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5260096419027134889, guid: 271670a58661d411390d84ab8659208e, type: 3}
@@ -15805,6 +15827,7 @@ GameObject:
   - component: {fileID: 1817439796}
   - component: {fileID: 1817439795}
   - component: {fileID: 1817439799}
+  - component: {fileID: 1817439800}
   m_Layer: 5
   m_Name: KeypadMenu
   m_TagString: Untagged
@@ -15913,6 +15936,27 @@ MonoBehaviour:
   closedChest: {fileID: 1140191540}
   openChest: {fileID: 1282030668}
   keyInside: {fileID: 821632687}
+--- !u!65 &1817439800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817439794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1821873643
 GameObject:
   m_ObjectHideFlags: 0

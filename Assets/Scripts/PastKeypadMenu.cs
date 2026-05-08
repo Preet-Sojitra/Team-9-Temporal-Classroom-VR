@@ -108,6 +108,7 @@ public class PastKeypadMenu : MonoBehaviour
         {
             currentInput = "";
             displayScreen.text = "____";
+            CloseMenu(); // Also exit the menu
         }
         else if (currentInput.Length < 4)
         {
