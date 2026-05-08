@@ -3,11 +3,6 @@ using Fusion;
 using System.Collections;
 using TMPro;
 
-/// <summary>
-/// The AI Clock Companion. Place this on the Clock GameObject.
-/// Requires GroqLLMClient, FreeTTSClient, and GroqWhisperClient on the same object.
-/// Tag the Clock GameObject as "AIClock" so raycast pointers can detect it.
-/// </summary>
 [RequireComponent(typeof(GroqLLMClient))]
 [RequireComponent(typeof(FreeTTSClient))]
 [RequireComponent(typeof(GroqWhisperClient))]
@@ -38,16 +33,10 @@ public class AIClockManager : NetworkBehaviour
     private bool countdownStarted = false;
     private int lastAnnouncedSecond = -1;
 
-    // ============================================================
-    //  PHOTON FUSION LIFECYCLE
-    // ============================================================
 
     private bool isInitialized = false;
     private float localTimer; // Fallback timer when no network
 
-    /// <summary>
-    /// Safe accessor that never throws even before Spawned().
-    /// </summary>
     private float SafeCurrentTime
     {
         get
@@ -62,7 +51,6 @@ public class AIClockManager : NetworkBehaviour
 
     private void Awake()
     {
-        // Always grab references early so nothing is null
         llmClient = GetComponent<GroqLLMClient>();
         ttsClient = GetComponent<FreeTTSClient>();
         whisperClient = GetComponent<GroqWhisperClient>();
@@ -79,14 +67,14 @@ public class AIClockManager : NetworkBehaviour
             TimerStarted = true;
         }
 
-        // Start the random torment loop!
+
         if (tormentCoroutine == null)
             tormentCoroutine = StartCoroutine(RandomTormentLoop());
     }
 
     private void Start()
     {
-        // If Fusion hasn't spawned this object yet, start torment loop anyway
+
         if (!isInitialized)
         {
             localTimer = escapeTimeSeconds;
@@ -95,7 +83,6 @@ public class AIClockManager : NetworkBehaviour
         }
     }
 
-    // Regular Update as fallback when Fusion is not active
     private void Update()
     {
         if (!isInitialized)
@@ -117,14 +104,12 @@ public class AIClockManager : NetworkBehaviour
     {
         if (!isInitialized || Object == null || !Object.IsValid) return;
 
-        // ---------- TIMER SYNC ----------
         if (Object.HasStateAuthority && CurrentTime > 0 && Runner.SessionInfo != null && Runner.SessionInfo.PlayerCount >= 2)
         {
             CurrentTime -= Runner.DeltaTime;
             if (CurrentTime < 0) CurrentTime = 0;
         }
 
-        // Keep localTimer in sync for safe access
         localTimer = CurrentTime;
 
         UpdateTimerUI(CurrentTime);
@@ -172,14 +157,6 @@ public class AIClockManager : NetworkBehaviour
         }
     }
 
-    // ============================================================
-    //  PUSH-TO-TALK (Called by the Raycast Pointers)
-    // ============================================================
-
-    /// <summary>
-    /// Call this from RaycastPointer when the player PRESSES on the Clock.
-    /// Starts recording the player's microphone.
-    /// </summary>
     public void OnPlayerStartTalking()
     {
         if (isBusy) return;
@@ -191,10 +168,7 @@ public class AIClockManager : NetworkBehaviour
         Debug.Log("[AIClock] Player started talking to the clock.");
     }
 
-    /// <summary>
-    /// Call this from RaycastPointer when the player RELEASES on the Clock. 
-    /// Stops recording and sends the audio off for transcription.
-    /// </summary>
+
     public void OnPlayerStopTalking()
     {
         if (!whisperClient.IsRecording) return;
@@ -224,13 +198,9 @@ public class AIClockManager : NetworkBehaviour
         AskClockSafe(fullPrompt);
     }
 
-    // ============================================================
-    //  RANDOM TORMENT SYSTEM (The bully clock!)
-    // ============================================================
-
     private IEnumerator RandomTormentLoop()
     {
-        // Wait a bit after the game starts before the first taunt
+
         yield return new WaitForSeconds(30f);
 
         while (SafeCurrentTime > 0)
@@ -238,12 +208,10 @@ public class AIClockManager : NetworkBehaviour
             float waitTime = Random.Range(minTormentInterval, maxTormentInterval);
             yield return new WaitForSeconds(waitTime);
 
-            // Don't interrupt if the clock is already talking to a player
             if (isBusy) continue;
 
-            // Build a context-aware taunt prompt based on remaining time
             string timeContext = GetTimeContext();
-            
+
             string tormentPrompt;
             if (Runner != null && Runner.SessionInfo != null && Runner.SessionInfo.PlayerCount < 2)
             {
@@ -276,13 +244,6 @@ public class AIClockManager : NetworkBehaviour
             return $"{exactTime} They have less than 1 minute left! Be dramatic. Tell them they are absolutely doomed.";
     }
 
-    // ============================================================
-    //  NETWORK RPCs (Sync across both players)
-    // ============================================================
-
-    /// <summary>
-    /// Smart wrapper: uses RPCs when networked, falls back to local when solo testing.
-    /// </summary>
     private void AskClockSafe(string question)
     {
         if (isInitialized && Object != null && Object.IsValid)
@@ -291,7 +252,6 @@ public class AIClockManager : NetworkBehaviour
         }
         else
         {
-            // Fallback: just call LLM directly without network
             llmClient.AskQuestion(question, OnLLMResponseLocal);
         }
     }
@@ -304,13 +264,11 @@ public class AIClockManager : NetworkBehaviour
 
     private void OnLLMResponse(string responseText)
     {
-        // Broadcast the response to ALL clients
         RPC_PlayTTS(responseText);
     }
 
     private void OnLLMResponseLocal(string responseText)
     {
-        // Local-only playback (no network)
         Debug.Log("[AIClock] Clock says: " + responseText);
         if (ttsClient != null) ttsClient.SpeakText(responseText);
         ShowSubtitle(responseText);
@@ -325,10 +283,6 @@ public class AIClockManager : NetworkBehaviour
         ShowSubtitle(responseText);
         isBusy = false;
     }
-
-    // ============================================================
-    //  HELPERS
-    // ============================================================
 
     private void ShowSubtitle(string text)
     {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8656411991895655145}
   - component: {fileID: 5564376985427197411}
   - component: {fileID: 8822098515771670133}
+  - component: {fileID: 9030202662391970051}
   m_Layer: 0
   m_Name: VoiceNetworkObject
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 8656411991895655145}
+  - {fileID: 9030202662391970051}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &8656411991895655145
 MonoBehaviour:
@@ -181,3 +183,17 @@ MonoBehaviour:
     Max: 1000
     SpeedUpPerc: 5
   restartOnDeviceChange: 1
+--- !u!114 &9030202662391970051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435147868996811317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a39585e0aba04b7eaf39c55049ffd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPOVSync
+  localCamera: {fileID: 0}
+  remoteCharacterCamera: {fileID: 0}

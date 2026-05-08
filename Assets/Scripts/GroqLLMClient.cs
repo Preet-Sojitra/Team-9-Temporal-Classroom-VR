@@ -8,7 +8,7 @@ public class GroqLLMClient : MonoBehaviour
 {
     [Header("API Settings")]
     [Tooltip("Get a free API key from console.groq.com")]
-    public string groqApiKey = ""; // Set in Unity Inspector (get key from console.groq.com)
+    public string groqApiKey = "";
     public string model = "llama-3.1-8b-instant";
 
     [TextArea(10, 20)]

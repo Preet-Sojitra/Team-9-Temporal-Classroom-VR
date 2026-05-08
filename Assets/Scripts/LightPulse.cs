@@ -15,7 +15,6 @@ public class LightPulse : MonoBehaviour
 
     void Update()
     {
-        // Sine wave between min and max intensity
         float t = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
         spotLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, t);
     }

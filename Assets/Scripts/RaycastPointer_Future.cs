@@ -27,17 +27,17 @@ public class RaycastPointerFuture : MonoBehaviour
     private bool isTalkingToClock = false;
 
     [Header("Future Pedestal")]
-    public GameObject futurePedestal;  // drag in Inspector
+    public GameObject futurePedestal;
 
     [Header("Key Drop")]
-    public Transform futureDropPoint; // Drag your "spawn location" empty object here
+    public Transform futureDropPoint;
 
     void Start()
     {
         if (lineRenderer != null)
         {
-            lineRenderer.startWidth = 0.015f; // Standard VR laser width
-            lineRenderer.endWidth = 0.005f;   // Tiny dot tip
+            lineRenderer.startWidth = 0.015f;
+            lineRenderer.endWidth = 0.005f;
         }
         SetPedestalHighlight(false);
     }
@@ -59,15 +59,11 @@ public class RaycastPointerFuture : MonoBehaviour
         Ray ray = new Ray(mathOrigin, direction);
         RaycastHit hit;
 
-        // Update held key position every frame
         if (grabbedKey != null)
         {
-            // Follow rayTip position every frame without parenting
             grabbedKey.transform.position = rayTip != null ? rayTip.position : mathOrigin + (direction * 1.5f);
-            // Don't set rotation — keeps key stable visually
         }
 
-        // 2. Visual Line Setup (World Space)
         float sideDirection = offsetToRight ? 1f : -1f;
         Vector3 localOrigin = new Vector3(visualOffset.x * sideDirection, visualOffset.y, visualOffset.z);
         Vector3 worldOrigin = lineRenderer.transform.TransformPoint(localOrigin);
@@ -75,7 +71,6 @@ public class RaycastPointerFuture : MonoBehaviour
         lineRenderer.useWorldSpace = true;
         lineRenderer.SetPosition(0, worldOrigin);
 
-        // 3. Physics Check
         if (Physics.Raycast(ray, out hit, raycastLength))
         {
             Debug.Log("Hit: " + hit.collider.gameObject.name + " | Tag: " + hit.collider.gameObject.tag);
@@ -85,7 +80,6 @@ public class RaycastPointerFuture : MonoBehaviour
 
             bool isLookingAtPedestal = (hitObject == futurePedestal || hitObject.transform.IsChildOf(futurePedestal.transform));
 
-            // PRIORITY 1: Holding a key — pedestal interaction takes over everything
             if (grabbedKey != null)
             {
                 if (isLookingAtPedestal)
@@ -101,16 +95,16 @@ public class RaycastPointerFuture : MonoBehaviour
                 {
                     SetPedestalHighlight(false);
                 }
-                return; // Don't process menu or other highlights while holding
+                return;
             }
 
             if (IsAIClock(hitObject) && aiClock != null)
             {
                 GameObject clockObj = FindAIClockParent(hitObject);
-                Debug.Log("Clock obj found: " + clockObj.name);
+                // Debug.Log("Clock obj found: " + clockObj.name);
 
                 Outline o = clockObj.GetComponent<Outline>();
-                Debug.Log("Outline found: " + (o != null) + " | enabled: " + (o != null ? o.enabled.ToString() : "N/A"));
+                // Debug.Log("Outline found: " + (o != null) + " | enabled: " + (o != null ? o.enabled.ToString() : "N/A"));
 
                 UpdateHighlight(clockObj);
 
@@ -128,7 +122,6 @@ public class RaycastPointerFuture : MonoBehaviour
             }
 
 
-            // Priority 1: The Menu
             if (objectMenu != null && objectMenu.IsMenuOpen())
             {
                 objectMenu.HoverButton(hitObject);
@@ -141,7 +134,6 @@ public class RaycastPointerFuture : MonoBehaviour
 
             SetPedestalHighlight(isLookingAtPedestal);
 
-            // Priority 2: World Objects (Key or Interactables)
             if (hitObject.CompareTag("Key") || hitObject.CompareTag("Interactable"))
             {
                 UpdateHighlight(hitObject);
@@ -192,21 +184,18 @@ public class RaycastPointerFuture : MonoBehaviour
         grabbedKey = key;
         if (key.GetComponent<Collider>()) key.GetComponent<Collider>().enabled = false;
 
-        // DON'T parent to rayTip — just follow it via code each frame like Past room does
-        // Parenting causes weird rotation inheritance issues
         key.transform.SetParent(null);
         Debug.Log("Future Key Picked Up!");
     }
 
     void UpdateHighlight(GameObject hitObject)
     {
-        Debug.Log("UpdateHighlight called. current: " + (currentHoveredObject?.name ?? "null") + " new: " + hitObject.name);
         if (currentHoveredObject != hitObject)
         {
             ClearHighlight();
             currentHoveredObject = hitObject;
             SetHighlight(currentHoveredObject, true);
-            Debug.Log("SetHighlight called with true");
+            // Debug.Log("SetHighlight called with true");
         }
     }
 
@@ -233,7 +222,6 @@ public class RaycastPointerFuture : MonoBehaviour
 
         grabbedKey.transform.SetParent(null);
 
-        // Use your existing spawn location empty object
         if (futureDropPoint != null)
         {
             grabbedKey.transform.position = futureDropPoint.position;
@@ -241,14 +229,13 @@ public class RaycastPointerFuture : MonoBehaviour
         }
         else
         {
-            // Fallback if not assigned
             grabbedKey.transform.position = futurePedestal.transform.position + Vector3.up * 0.1f;
         }
 
         if (grabbedKey.GetComponent<Collider>())
             grabbedKey.GetComponent<Collider>().enabled = true;
 
-        Debug.Log("Key dropped at future spawn point!");
+        // Debug.Log("Key dropped at future spawn point!");
         grabbedKey = null;
         SetPedestalHighlight(false);
     }

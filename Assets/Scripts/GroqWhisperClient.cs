@@ -8,13 +8,12 @@ public class GroqWhisperClient : MonoBehaviour
 {
     private string groqApiKey;
     private AudioClip recordingClip;
-    private const int MaxRecordingTime = 10; // Max seconds players can talk
+    private const int MaxRecordingTime = 10;
 
     public bool IsRecording { get; private set; }
 
     private void Start()
     {
-        // Grab the key from the LLM client so they only paste it in one place
         groqApiKey = GetComponent<GroqLLMClient>().groqApiKey;
     }
 
@@ -23,7 +22,6 @@ public class GroqWhisperClient : MonoBehaviour
         if (IsRecording) return;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        // Android requires runtime microphone permission
         if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.Microphone))
         {
             UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.Microphone);
@@ -33,8 +31,6 @@ public class GroqWhisperClient : MonoBehaviour
 #endif
 
         IsRecording = true;
-        // Start recording with default microphone. 
-        // 44100 Hz is standard for Whisper
         recordingClip = Microphone.Start(null, false, MaxRecordingTime, 44100);
         Debug.Log("Microphone Recording Started...");
     }
@@ -48,14 +44,12 @@ public class GroqWhisperClient : MonoBehaviour
         Microphone.End(null);
         Debug.Log("Microphone Recording Stopped.");
 
-        // If they just clicked it for a millisecond, don't upload
-        if (position < 1000) 
+        if (position < 1000)
         {
             onTranscriptionDone?.Invoke("");
             return;
         }
 
-        // Trim the silence off the end of clip based on recording position
         AudioClip trimmedClip = TrimClip(recordingClip, position);
         byte[] wavData = ConvertToWav(trimmedClip);
 
@@ -82,11 +76,13 @@ public class GroqWhisperClient : MonoBehaviour
         }
         else
         {
-            // The JSON returned matches OpenAI: {"text": "What they said"}
-            try {
+            try
+            {
                 TranscriptionResponse response = JsonUtility.FromJson<TranscriptionResponse>(request.downloadHandler.text);
                 onTranscriptionDone?.Invoke(response.text);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Debug.LogError("Whisper JSON Parse error: " + e.Message);
             }
         }
@@ -102,7 +98,6 @@ public class GroqWhisperClient : MonoBehaviour
         return newClip;
     }
 
-    // Helper to generate proper WAV headers, which Whisper requires
     private byte[] ConvertToWav(AudioClip clip)
     {
         using (MemoryStream memoryStream = new MemoryStream())
@@ -113,7 +108,6 @@ public class GroqWhisperClient : MonoBehaviour
             float[] data = new float[samples * channels];
             clip.GetData(data, 0);
 
-            // WAV header
             using (BinaryWriter writer = new BinaryWriter(memoryStream))
             {
                 writer.Write(new char[4] { 'R', 'I', 'F', 'F' });

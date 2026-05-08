@@ -15,22 +15,19 @@ public class KeyTeleportHack : NetworkBehaviour
     {
         if (Object == null || !Object.IsValid)
         {
-            Debug.LogWarning("Fusion Object not valid — swapping locally only.");
+            // Debug.LogWarning("Fusion Object not valid — swapping locally only.");
             LocalManualSwap(true);
             return;
         }
 
-        Debug.Log($"RequestTeleport called. HasStateAuthority={Object.HasStateAuthority}");
+        // Debug.Log($"RequestTeleport called. HasStateAuthority={Object.HasStateAuthority}");
 
         if (Object.HasStateAuthority)
         {
-            // We own it, set directly
             isKeyInFuture = true;
         }
         else
         {
-            // Request authority, then set
-            // In Shared Mode this is the correct pattern
             Object.RequestStateAuthority();
             StartCoroutine(SetAfterAuthority());
         }
@@ -38,7 +35,6 @@ public class KeyTeleportHack : NetworkBehaviour
 
     private System.Collections.IEnumerator SetAfterAuthority()
     {
-        // Wait up to 3 seconds for authority transfer
         float timeout = 3f;
         while (!Object.HasStateAuthority && timeout > 0f)
         {
@@ -49,12 +45,11 @@ public class KeyTeleportHack : NetworkBehaviour
         if (Object.HasStateAuthority)
         {
             isKeyInFuture = true;
-            Debug.Log("Authority granted — key teleported network-wide.");
+            // Debug.Log("Authority granted — key teleported network-wide.");
         }
         else
         {
-            // Last resort: fire the RPC anyway
-            Debug.LogWarning("Authority timeout — sending RPC as fallback.");
+            // Debug.LogWarning("Authority timeout — sending RPC as fallback.");
             RPC_SetKeyStatus(true);
         }
     }
@@ -74,16 +69,15 @@ public class KeyTeleportHack : NetworkBehaviour
     {
         if (pastKey != null) pastKey.SetActive(!inFuture);
         if (futureKey != null) futureKey.SetActive(inFuture);
-        Debug.Log($"Key Swap — inFuture: {inFuture}");
+        // Debug.Log($"Key Swap — inFuture: {inFuture}");
     }
 
     public override void Spawned()
     {
-        // Find the key GameObjects by name at runtime
         pastKey = FindInactiveByName("rust_key_past");
         futureKey = FindInactiveByName("rust_key_future");
 
-        Debug.Log($"KeyTeleportHack Spawned. pastKey={pastKey}, futureKey={futureKey}");
+        // Debug.Log($"KeyTeleportHack Spawned. pastKey={pastKey}, futureKey={futureKey}");
     }
 
     private GameObject FindInactiveByName(string name)
@@ -94,14 +88,14 @@ public class KeyTeleportHack : NetworkBehaviour
             if (t.hideFlags != HideFlags.None) continue;
             if (t.name == name) return t.gameObject;
         }
-        Debug.LogWarning($"Could not find: {name}");
+        // Debug.LogWarning($"Could not find: {name}");
         return null;
     }
 
-    void Start()
-    {
-        Debug.Log($"KeyTeleportHack Start — Object null? {Object == null}");
-        if (Object != null)
-            Debug.Log($"Object.IsValid={Object.IsValid}, HasStateAuthority={Object.HasStateAuthority}");
-    }
+    // void Start()
+    // {
+    // Debug.Log($"KeyTeleportHack Start — Object null? {Object == null}");
+    // if (Object != null)
+    // Debug.Log($"Object.IsValid={Object.IsValid}, HasStateAuthority={Object.HasStateAuthority}");
+    // }
 }

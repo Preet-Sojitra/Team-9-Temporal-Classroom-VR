@@ -11,9 +11,9 @@ public class PastKeypadMenu : MonoBehaviour
     private string currentInput = "";
 
     [Header("Chest References")]
-    public GameObject closedChest; // The one with the outline
-    public GameObject openChest;   // Disabled by default
-    public GameObject keyInside;   // Inside openChest, has Outline script
+    public GameObject closedChest;
+    public GameObject openChest;
+    public GameObject keyInside;
 
     private Canvas menuCanvas;
     private Camera mainCamera;
@@ -34,12 +34,10 @@ public class PastKeypadMenu : MonoBehaviour
     {
         if (!menuCanvas.enabled) return;
 
-        // FIX: If camera wasn't found at Start, find it now
         if (mainCamera == null) mainCamera = Camera.main;
 
         if (mainCamera != null)
         {
-            // Face player
             transform.LookAt(mainCamera.transform);
             transform.Rotate(0, 180, 0);
         }
@@ -60,14 +58,12 @@ public class PastKeypadMenu : MonoBehaviour
 
     public void HoverButton(GameObject hitObj)
     {
-        // Safety check: if we hit nothing, just clear the highlight and stop
         if (hitObj == null)
         {
             ClearHighlight();
             return;
         }
 
-        // Highlight logic: checking if hit object is a button child
         if (hitObj.CompareTag("KeypadButton"))
         {
             if (currentHoveredButton != hitObj)
@@ -90,9 +86,8 @@ public class PastKeypadMenu : MonoBehaviour
 
         string val = currentHoveredButton.name;
 
-        if (val == "y") // SUBMIT LOGIC
+        if (val == "y")
         {
-            // Only check if the player has typed 4 digits
             if (currentInput.Length == 4)
             {
                 if (currentInput == correctCode)
@@ -106,18 +101,16 @@ public class PastKeypadMenu : MonoBehaviour
             }
             else
             {
-                // Optional: Flash "SHORT" or just do nothing if they haven't typed enough
                 Debug.Log("Code too short to submit!");
             }
         }
-        else if (val == "x") // CLEAR LOGIC
+        else if (val == "x")
         {
             currentInput = "";
-            displayScreen.text = "____"; // Reset placeholder
+            displayScreen.text = "____";
         }
-        else if (currentInput.Length < 4) // NUMBER TYPING
+        else if (currentInput.Length < 4)
         {
-            // Only add if it's a number (prevents accidental naming issues)
             if (int.TryParse(val, out _))
             {
                 currentInput += val;
@@ -131,15 +124,14 @@ public class PastKeypadMenu : MonoBehaviour
         displayScreen.text = "OPEN";
         yield return new WaitForSeconds(1f);
 
-        if (closedChest != null) closedChest.SetActive(false); // Remove the closed one
+        if (closedChest != null) closedChest.SetActive(false);
         if (openChest != null)
         {
             openChest.SetActive(true);    // Show the open one
-            // Explicitly enable the key since it starts disabled
             if (keyInside != null) keyInside.SetActive(true);
         }
 
-        CloseMenu(); // Hide the keypad so they can see the chest
+        CloseMenu();
     }
 
     IEnumerator WrongCodeFlash()
@@ -154,7 +146,6 @@ public class PastKeypadMenu : MonoBehaviour
     {
         if (btn == null) return;
 
-        // Try to get Image on the object itself or its children (where the visual usually is)
         Image img = btn.GetComponent<Image>();
         if (img == null) img = btn.GetComponentInChildren<Image>();
 

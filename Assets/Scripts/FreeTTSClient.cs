@@ -33,7 +33,7 @@ public class FreeTTSClient : MonoBehaviour
 
     private void SetupEerieEffects()
     {
-        // --- REVERB: Makes voice sound like it's echoing inside an old clock ---
+
         if (enableReverb)
         {
             reverbFilter = gameObject.AddComponent<AudioReverbFilter>();
@@ -41,32 +41,27 @@ public class FreeTTSClient : MonoBehaviour
             reverbFilter.dryLevel = 0f;
             reverbFilter.room = -400f;
             reverbFilter.roomHF = -200f;
-            reverbFilter.decayTime = 3.5f;       // Long decay for that eerie trailing
+            reverbFilter.decayTime = 3.5f;
             reverbFilter.reflectionsLevel = -100f;
             reverbFilter.reverbLevel = 200f;
         }
 
-        // --- ECHO: Ghostly repeating whisper effect ---
         if (enableEcho)
         {
             echoFilter = gameObject.AddComponent<AudioEchoFilter>();
-            echoFilter.delay = 180f;       // Short delay (ms) for a tight echo
-            echoFilter.decayRatio = 0.3f;  // How much each echo fades
+            echoFilter.delay = 180f;
+            echoFilter.decayRatio = 0.3f;
             echoFilter.dryMix = 1f;
-            echoFilter.wetMix = 0.4f;      // Blend of echo effect
+            echoFilter.wetMix = 0.4f;
         }
 
-        // --- DISTORTION: Subtle crackling, like the clock is ancient and broken ---
         if (enableDistortion)
         {
             distortionFilter = gameObject.AddComponent<AudioDistortionFilter>();
-            distortionFilter.distortionLevel = 0.15f; // Very subtle -- just enough to feel "off"
+            distortionFilter.distortionLevel = 0.15f;
         }
     }
 
-    /// <summary>
-    /// Speaks the given text with eerie audio effects applied.
-    /// </summary>
     public void SpeakText(string text)
     {
         StartCoroutine(DownloadAndPlayAudio(text));
@@ -74,7 +69,7 @@ public class FreeTTSClient : MonoBehaviour
 
     private IEnumerator DownloadAndPlayAudio(string text)
     {
-        // Google TTS has a ~200 character limit per request, so split long text
+
         string[] chunks = SplitText(text, 180);
 
         for (int i = 0; i < chunks.Length; i++)
@@ -95,11 +90,10 @@ public class FreeTTSClient : MonoBehaviour
                 else
                 {
                     AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-                    audioSource.pitch = voicePitch; // Ensure pitch is set
+                    audioSource.pitch = voicePitch;
                     audioSource.clip = clip;
                     audioSource.Play();
 
-                    // Wait for this chunk to finish (account for pitch change)
                     yield return new WaitForSeconds((clip.length / voicePitch) + 0.1f);
                 }
             }
@@ -120,7 +114,6 @@ public class FreeTTSClient : MonoBehaviour
                 break;
             }
 
-            // Try to split at a sentence boundary (. ! ?)
             int splitIndex = text.LastIndexOf('.', maxLength);
             if (splitIndex < maxLength / 2) splitIndex = text.LastIndexOf(' ', maxLength);
             if (splitIndex <= 0) splitIndex = maxLength;

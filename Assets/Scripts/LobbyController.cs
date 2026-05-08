@@ -10,7 +10,6 @@ public class LobbyController : MonoBehaviour
 
     void Start()
     {
-        // Ensure the loading screen is hidden when the lobby starts
         if (loadingOverlay != null)
         {
             loadingOverlay.SetActive(false);
@@ -19,7 +18,6 @@ public class LobbyController : MonoBehaviour
 
     void Update()
     {
-        // Check for role selection keys
         if (Input.GetKeyDown(KeyCode.P))
         {
             StartGameSequence("Past");
@@ -35,37 +33,27 @@ public class LobbyController : MonoBehaviour
     {
         // Debug.Log($"Role Selected: {role}. Starting Async Load...");
 
-        // 1. Save the choice to the static class
         LobbyData.SelectedRole = role;
 
-        // 2. Show the "Blindfold" immediately to the player
         if (loadingOverlay != null)
         {
             loadingOverlay.SetActive(true);
         }
 
-        // 3. Start the background loading process
         StartCoroutine(LoadAsyncScene());
     }
 
     private IEnumerator LoadAsyncScene()
     {
-        // Use LoadSceneAsync to keep the Lobby active while Main Scene loads
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Scene");
 
-        // While the scene is loading, we can stay here. 
-        // Unity switches automatically once asyncLoad.isDone is true.
         while (!asyncLoad.isDone)
         {
-            // If you wanted a progress bar, you'd use (asyncLoad.progress) here
             yield return null;
         }
-
-        // Debug.Log("Scene Loaded! Transitioning...");
     }
 }
-
-// using UnityEngine;
 // using UnityEngine.SceneManagement;
 
 // public class LobbyController : MonoBehaviour

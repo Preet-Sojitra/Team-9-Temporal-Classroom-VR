@@ -50,8 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        // TODO: Map to your controller button — replace KeyCode.Tab with js button later
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetButtonDown("js0"))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("js0"))
         {
             if (_isOpen) CloseMenu();
             else OpenMenu();
